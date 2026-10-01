@@ -2,7 +2,7 @@ name: Update H1 market snapshot
 
 on:
   schedule:
-    # Run a superset in UTC; the job itself gates on Europe/Rome 07:02–17:02.\n    - cron: '2 5-16 * * 1-5'
+    # Run a superset in UTC; the job itself gates on Europe/Rome 07:03–17:03.\n    - cron: '3 5-16 * * 1-5'
   workflow_dispatch:
 
 permissions:
