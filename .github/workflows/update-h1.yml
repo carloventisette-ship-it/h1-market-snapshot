@@ -2,7 +2,7 @@ name: Update H1 market snapshot
 
 on:
   schedule:
-    - cron: '2 5-15 * * 1-5'
+    # Run a superset in UTC; the job itself gates on Europe/Rome 07:02–17:02.\n    - cron: '2 5-16 * * 1-5'
   workflow_dispatch:
 
 permissions:
@@ -17,10 +17,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4\n        if: steps.window.outputs.run == 'true'
         with:
           node-version: 20
-      - run: npm install
+      - run: npm install\n        if: steps.window.outputs.run == 'true'
       - name: Build H1 snapshot
         env:
           TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
