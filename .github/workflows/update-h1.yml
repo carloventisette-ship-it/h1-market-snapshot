@@ -3,7 +3,8 @@ name: Update H1 market snapshot
 on:
   schedule:
     # UTC superset; local gate keeps Europe/Rome 07:03-17:03 across DST.
-    - cron: '3 5-16 * * 1-5'
+    - cron: '13 7-17 * * 1-5'
+    timezone: "Europe/Rome"
   workflow_dispatch:
 
 permissions:
