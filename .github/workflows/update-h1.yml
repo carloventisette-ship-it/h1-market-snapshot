@@ -48,7 +48,9 @@ jobs:
       - name: Build H1 snapshot
         if: steps.window.outputs.run == 'true'
         env:
-          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+  IG_USERNAME: ${{ secrets.IG_USERNAME }}
+  IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
         run: npm run snapshot
 
       - name: Commit snapshot
