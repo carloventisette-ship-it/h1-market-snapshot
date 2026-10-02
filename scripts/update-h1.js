@@ -1,8 +1,8 @@
-const { getHistoricalRates } = require("dukascopy-node");
 const fs = require("fs");
 
 const HOUR_MS = 3600000;
-const TWELVE_OUTPUT_SIZE = 150;
+const IG_MAX_BARS = 150;
+const IG_BASE = "https://demo-api.ig.com/gateway/deal";
 const RECENT_BARS = 8;
 
 function floorToUtcHour(timestamp = Date.now()) { return Math.floor(timestamp / HOUR_MS) * HOUR_MS; }
@@ -66,26 +66,39 @@ function decorateClosedBars(rawBars, now=Date.now()) {
       hasLatestExpectedClosedCandle:latest.timestamp===currentHourStart-HOUR_MS}
   };
 }
-async function fetchTwelveData(symbol) {
-  const apiKey=process.env.TWELVE_DATA_API_KEY; if(!apiKey) throw new Error("TWELVE_DATA_API_KEY is not configured.");
-  const url=new URL("https://api.twelvedata.com/time_series");
-  url.searchParams.set("symbol",symbol); url.searchParams.set("interval","1h");
-  url.searchParams.set("outputsize",String(TWELVE_OUTPUT_SIZE)); url.searchParams.set("format","JSON");
-  url.searchParams.set("timezone","UTC"); url.searchParams.set("apikey",apiKey);
-  const response=await fetch(url,{headers:{"User-Agent":"h1-market-snapshot/1.0"},cache:"no-store"});
-  const payload=await response.json();
-  if(!response.ok||payload.status==="error"||!Array.isArray(payload.values))
-    throw new Error(`Twelve Data error for ${symbol}: ${payload.message||payload.code||"HTTP "+response.status}`);
-  const bars=payload.values.map(x=>({timestamp:Date.parse(`${x.datetime.replace(" ","T")}Z`),
-    open:x.open,high:x.high,low:x.low,close:x.close,volume:x.volume??null}));
-  return {source:"Twelve Data",sourceSymbol:symbol,vwap:null,...decorateClosedBars(bars)};
+async function ig(path, { method="GET", version="1", auth={}, body }={}) {
+  const res=await fetch(IG_BASE+path,{method,headers:{
+    "X-IG-API-KEY":process.env.IG_API_KEY,"Version":version,
+    "Accept":"application/json; charset=UTF-8","Content-Type":"application/json; charset=UTF-8",...auth
+  },body:body?JSON.stringify(body):undefined});
+  const text=await res.text(); let data;
+  try { data=text?JSON.parse(text):{}; } catch { data={raw:text}; }
+  if(!res.ok) throw new Error(`IG HTTP ${res.status}: ${JSON.stringify(data)}`);
+  return {res,data};
 }
-async function fetchWti() {
-  const now=new Date(), from=new Date(now.getTime()-14*24*HOUR_MS), to=new Date(now.getTime()+HOUR_MS);
-  const data=await getHistoricalRates({instrument:"lightcmdusd",dates:{from,to},timeframe:"h1",format:"json",priceType:"bid",volumes:true});
-  if(!Array.isArray(data)||!data.length) throw new Error("Dukascopy returned no WTI H1 data.");
-  const bars=data.map(x=>({timestamp:x.timestamp,open:x.open,high:x.high,low:x.low,close:x.close,volume:x.volume??null}));
-  return {source:"Dukascopy",sourceSymbol:"lightcmdusd",vwap:null,...decorateClosedBars(bars)};
+async function loginIg() {
+  for(const k of ["IG_API_KEY","IG_USERNAME","IG_PASSWORD"]) if(!process.env[k]) throw new Error(`${k} is not configured.`);
+  const x=await ig("/session",{method:"POST",version:"2",
+    body:{identifier:process.env.IG_USERNAME.trim(),password:process.env.IG_PASSWORD}});
+  const cst=x.res.headers.get("cst"), sec=x.res.headers.get("x-security-token");
+  if(!cst||!sec) throw new Error("IG session tokens missing.");
+  return {CST:cst,"X-SECURITY-TOKEN":sec};
+}
+function mid(p) {
+  const b=Number(p?.bid),a=Number(p?.ask);
+  return Number.isFinite(b)&&Number.isFinite(a)?(b+a)/2:null;
+}
+async function fetchIg(auth, epic, sourceInstrument, scale=1) {
+  const x=await ig("/prices/"+encodeURIComponent(epic)+"?resolution=HOUR&max="+IG_MAX_BARS+"&pageSize="+IG_MAX_BARS,
+    {version:"3",auth});
+  if(!Array.isArray(x.data.prices)||!x.data.prices.length) throw new Error(`IG returned no H1 data for ${sourceInstrument}.`);
+  const bars=x.data.prices.map(p=>({
+    timestamp:Date.parse(p.snapshotTimeUTC+"Z"),
+    open:mid(p.openPrice)/scale,high:mid(p.highPrice)/scale,
+    low:mid(p.lowPrice)/scale,close:mid(p.closePrice)/scale,
+    volume:p.lastTradedVolume??null
+  }));
+  return {source:"IG Demo",sourceSymbol:epic,sourceInstrument,vwap:null,...decorateClosedBars(bars)};
 }
 async function safeLoad(name, loader) {
   try { return {ok:true,name,data:await loader()}; }
@@ -93,10 +106,11 @@ async function safeLoad(name, loader) {
 }
 (async()=>{
   const generatedAt=Date.now();
+  const auth=await loginIg();
   const results=await Promise.all([
-    safeLoad("EURUSD",()=>fetchTwelveData("EUR/USD")),
-    safeLoad("XAUUSD",()=>fetchTwelveData("XAU/USD")),
-    safeLoad("WTI",fetchWti)
+    safeLoad("EURUSD",()=>fetchIg(auth,"CS.D.EURUSD.CEB.IP","EUR/USD")),
+    safeLoad("XAUUSD",()=>fetchIg(auth,"CS.D.CFEGOLD.CEB.IP","Spot Gold ($1)")),
+    safeLoad("WTI",()=>fetchIg(auth,"CC.D.CL.UEB.IP","Oil - US Crude (1$)",100))
   ]);
   const instruments={}, errors={};
   for(const r of results) r.ok ? instruments[r.name]=r.data : errors[r.name]=r.error;
