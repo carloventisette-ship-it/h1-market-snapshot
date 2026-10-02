@@ -27,6 +27,23 @@ async function main() {
     if (!process.env[k]) throw new Error(`Missing GitHub secret: ${k}`);
   }
 
+  const ident = process.env.IG_USERNAME;
+  console.log('IDENTIFIER DIAGNOSTIC ' + JSON.stringify({
+    length: ident.length,
+    trimmedLength: ident.trim().length,
+    hasLeadingOrTrailingWhitespace: ident !== ident.trim(),
+    hasWhitespaceAnywhere: /\\s/.test(ident),
+    hasAtSign: ident.includes('@'),
+    hasNonAscii: /[^\\x20-\\x7E]/.test(ident),
+    characterClasses: {
+      letters: /[A-Za-z]/.test(ident),
+      digits: /[0-9]/.test(ident),
+      dot: ident.includes('.'),
+      underscore: ident.includes('_'),
+      hyphen: ident.includes('-')
+    }
+  }));
+
   const login = await ig('/session', {
     method:'POST', version:'2',
     body:{ identifier:process.env.IG_USERNAME, password:process.env.IG_PASSWORD }
