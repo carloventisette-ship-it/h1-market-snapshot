@@ -49,8 +49,8 @@ jobs:
         if: steps.window.outputs.run == 'true'
         env:
           IG_API_KEY: ${{ secrets.IG_API_KEY }}
-  IG_USERNAME: ${{ secrets.IG_USERNAME }}
-  IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
         run: npm run snapshot
 
       - name: Commit snapshot
