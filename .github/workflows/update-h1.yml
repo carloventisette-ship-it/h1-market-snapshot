@@ -1,10 +1,6 @@
 name: Update H1 market snapshot
 
 on:
-  schedule:
-    # UTC superset; local gate keeps Europe/Rome 07:03-17:03 across DST.
-    - cron: '13 7-17 * * 1-5'
-      timezone: "Europe/Rome"
   workflow_dispatch:
 
 permissions:
@@ -18,36 +14,16 @@ jobs:
   snapshot:
     runs-on: ubuntu-latest
     steps:
-      - name: Check Europe/Rome scan window
-        id: window
-        shell: bash
-        run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-            exit 0
-          fi
-          ROME_HOUR=$(TZ=Europe/Rome date +%H)
-          echo "Europe/Rome hour: $ROME_HOUR"
-          if [ "$ROME_HOUR" -ge 7 ] && [ "$ROME_HOUR" -le 17 ]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
-
       - uses: actions/checkout@v4
-        if: steps.window.outputs.run == 'true'
 
       - uses: actions/setup-node@v4
-        if: steps.window.outputs.run == 'true'
         with:
           node-version: 20
 
       - name: Install dependencies
-        if: steps.window.outputs.run == 'true'
         run: npm install
 
       - name: Build H1 snapshot
-        if: steps.window.outputs.run == 'true'
         env:
           IG_API_KEY: ${{ secrets.IG_API_KEY }}
           IG_USERNAME: ${{ secrets.IG_USERNAME }}
@@ -55,7 +31,6 @@ jobs:
         run: npm run snapshot
 
       - name: Commit snapshot
-        if: steps.window.outputs.run == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
