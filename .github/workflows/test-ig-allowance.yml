@@ -1,0 +1,76 @@
+name: Test IG Historical Allowance
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test IG with 1 H1 datapoint
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+        run: |
+          node <<'NODE'
+          const BASE = "https://demo-api.ig.com/gateway/deal";
+
+          async function call(path, options = {}) {
+            const r = await fetch(BASE + path, options);
+            const text = await r.text();
+            let data;
+            try {
+              data = text ? JSON.parse(text) : {};
+            } catch {
+              data = { raw: text };
+            }
+            return { r, data };
+          }
+
+          (async () => {
+            const login = await call("/session", {
+              method: "POST",
+              headers: {
+                "X-IG-API-KEY": process.env.IG_API_KEY,
+                "Version": "2",
+                "Content-Type": "application/json"
+              },
+              body: JSON.stringify({
+                identifier: process.env.IG_USERNAME.trim(),
+                password: process.env.IG_PASSWORD
+              })
+            });
+
+            if (!login.r.ok) {
+              throw new Error("IG login failed");
+            }
+
+            const result = await call(
+              "/prices/CS.D.EURUSD.CEB.IP?resolution=HOUR&max=1&pageSize=1",
+              {
+                headers: {
+                  "X-IG-API-KEY": process.env.IG_API_KEY,
+                  "Version": "3",
+                  "CST": login.r.headers.get("cst"),
+                  "X-SECURITY-TOKEN": login.r.headers.get("x-security-token")
+                }
+              }
+            );
+
+            console.log(JSON.stringify({
+              httpStatus: result.r.status,
+              ok: result.r.ok,
+              errorCode: result.data.errorCode || null,
+              pricesReturned: Array.isArray(result.data.prices)
+                ? result.data.prices.length
+                : 0,
+              allowance: result.data.allowance || null
+            }, null, 2));
+
+            if (!result.r.ok) {
+              process.exitCode = 1;
+            }
+          })();
+          NODE
