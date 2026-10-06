@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const HOUR_MS=3600000, IG_BASE="https://demo-api.ig.com/gateway/deal";
-const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=150, INCREMENTAL_BARS=3;
+const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=80, INCREMENTAL_BARS=3;
 const MARKETS={
   EURUSD:{epic:"CS.D.EURUSD.CEB.IP",name:"EUR/USD",scale:1},
   XAUUSD:{epic:"CS.D.CFEGOLD.CEB.IP",name:"Spot Gold ($1)",scale:1},
