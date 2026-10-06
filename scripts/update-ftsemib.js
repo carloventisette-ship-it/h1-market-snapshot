@@ -3,7 +3,7 @@ const fs = require("fs");
 const BASE="https://demo-api.ig.com/gateway/deal";
 const HISTORY_FILE="ftsemib-history.json";
 const SNAPSHOT_FILE="ftsemib-latest.json";
-const BOOTSTRAP_BARS=100;
+const BOOTSTRAP_BARS=80;
 
 const INSTRUMENTS=[
   {symbol:"ENI",name:"Eni",epic:process.env.IG_EPIC_ENI||null},
