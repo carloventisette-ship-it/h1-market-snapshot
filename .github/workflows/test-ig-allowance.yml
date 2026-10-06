@@ -2,6 +2,10 @@ name: Test IG Historical Allowance
 
 on:
   workflow_dispatch:
+  schedule:
+    # 07:30 Europe/Rome: 05:30 UTC in summer, 06:30 UTC in winter.
+    - cron: "30 5 * * *"
+    - cron: "30 6 * * *"
 
 jobs:
   test:
