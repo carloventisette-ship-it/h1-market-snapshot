@@ -1,12 +1,92 @@
 {
-  "ok": false,
-  "status": "awaiting-bootstrap",
+  "ok": true,
+  "generatedAtUtc": "2026-10-12T09:51:47.256Z",
+  "generatedAtEuropeRome": "2026-10-12T11:51:47",
   "timeframe": "1d",
+  "source": "Borsa Italiana official chart API",
   "indicators": [
     "EMA10",
     "SMA20",
     "SMA50"
   ],
-  "instruments": {},
+  "requestedMode": "auto",
+  "instruments": {
+    "ENI": {
+      "name": "Eni",
+      "isin": "IT0003132476",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 129,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 24.59,
+        "high": 25.24,
+        "low": 24.555,
+        "close": 25.21,
+        "ema10": 24.463829,
+        "sma20": 24.2025,
+        "sma50": 23.8359
+      },
+      "previousCompleted": {
+        "timestamp": 1791417600000,
+        "date": "2026-10-08",
+        "open": 24.4,
+        "high": 25.05,
+        "low": 24.345,
+        "close": 24.88,
+        "ema10": 24.298013,
+        "sma20": 24.142,
+        "sma50": 23.8113
+      },
+      "indicators": {
+        "ema10": 24.463829,
+        "sma20": 24.2025,
+        "sma50": 23.8359
+      }
+    },
+    "ENEL": {
+      "name": "Enel",
+      "isin": "IT0003128367",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 129,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 8.817,
+        "high": 8.917,
+        "low": 8.81,
+        "close": 8.867,
+        "ema10": 8.797477,
+        "sma20": 8.81845,
+        "sma50": 9.20498
+      },
+      "previousCompleted": {
+        "timestamp": 1791417600000,
+        "date": "2026-10-08",
+        "open": 8.7,
+        "high": 8.86,
+        "low": 8.677,
+        "close": 8.758,
+        "ema10": 8.782028,
+        "sma20": 8.82295,
+        "sma50": 9.22362
+      },
+      "indicators": {
+        "ema10": 8.797477,
+        "sma20": 8.81845,
+        "sma50": 9.20498
+      }
+    }
+  },
   "errors": {}
 }
