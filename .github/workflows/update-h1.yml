@@ -2,6 +2,16 @@ name: Update H1 market snapshot
 
 on:
   workflow_dispatch:
+    inputs:
+      refresh_mode:
+        description: "H1 refresh mode"
+        required: false
+        default: "auto"
+        type: choice
+        options:
+          - auto
+          - incremental
+          - full
 
 permissions:
   contents: write
@@ -28,6 +38,7 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY }}
           IG_USERNAME: ${{ secrets.IG_USERNAME }}
           IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          H1_REFRESH_MODE: ${{ inputs.refresh_mode || 'auto' }}
         run: npm run snapshot
 
       - name: Commit snapshot and history
