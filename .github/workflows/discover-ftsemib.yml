@@ -1,4 +1,4 @@
-name: Test FTSE MIB Twelve Data
+name: Test FTSE MIB Yahoo
 
 on:
   workflow_dispatch:
@@ -7,14 +7,12 @@ permissions:
   contents: read
 
 jobs:
-  discover:
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Test ENI and Enel D1
-        env:
-          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
+      - name: Test ENI and Enel Yahoo historical pages
         run: node scripts/discover-ftsemib.js
