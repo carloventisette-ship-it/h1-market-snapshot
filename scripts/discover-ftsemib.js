@@ -57,11 +57,11 @@ function joinUrl(base, path) {
   return base.replace(/\/+$/, "") + "/" + path.replace(/^\/+/, "");
 }
 
-async function history1M(item) {
+async function history6M(item) {
   const cfg = await getConfig(item);
   const path = "instruments/" + cfg.code + "," + cfg.exch + ",ISIN/history/period";
   const endpoint = joinUrl(cfg.apiUrl, path);
-  const requestUrl = endpoint + "?period=1M";
+  const requestUrl = endpoint + "?period=6M";
 
   const authHeaders = [
     cfg.token,
@@ -101,21 +101,23 @@ async function history1M(item) {
 
   for (const item of ITEMS) {
     try {
-      const r = await history1M(item);
+      const r = await history6M(item);
       const rows = r.rows;
 
-      console.log("\nHISTORY API TEST " + item.key);
+      console.log("\nHISTORY 6M TEST " + item.key);
       console.log(JSON.stringify({
         ok: true,
         status: r.status,
         rows: rows.length,
+        selectedBars: last80.length,
         responseKeys: r.keys,
-        first: rows[0],
-        last: rows[rows.length - 1]
+        historyFirst: rows[0],
+        selectedFirst: last80[0],
+        selectedLast: last80[last80.length - 1]
       }, null, 2));
     } catch (e) {
       ok = false;
-      console.log("\nHISTORY API TEST " + item.key);
+      console.log("\nHISTORY 6M TEST " + item.key);
       console.log(JSON.stringify({
         ok: false,
         error: e instanceof Error ? e.message : String(e)
