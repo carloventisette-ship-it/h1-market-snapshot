@@ -103,6 +103,8 @@ async function history6M(item) {
     try {
       const r = await history6M(item);
       const rows = r.rows;
+      if (rows.length < 80) throw new Error("Only " + rows.length + " daily rows returned; need at least 80");
+      const last80 = rows.slice(-80);
 
       console.log("\nHISTORY 6M TEST " + item.key);
       console.log(JSON.stringify({
