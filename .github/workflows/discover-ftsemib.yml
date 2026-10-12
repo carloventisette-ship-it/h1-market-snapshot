@@ -1,4 +1,4 @@
-name: Test FTSE MIB Yahoo
+name: Test FTSE MIB Borsa Italiana
 
 on:
   workflow_dispatch:
@@ -14,5 +14,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Test ENI and Enel Yahoo historical pages
+      - name: Test ENI and Enel official D1 OHLC
         run: node scripts/discover-ftsemib.js
