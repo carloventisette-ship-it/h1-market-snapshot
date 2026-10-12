@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const HOUR_MS=3600000, IG_BASE="https://demo-api.ig.com/gateway/deal";
-const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=80, INCREMENTAL_BARS=2, HISTORY_BARS=120;
+const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=80, INCREMENTAL_BARS=2;
 const MARKETS={
   EURUSD:{epic:"CS.D.EURUSD.CEB.IP",name:"EUR/USD",scale:1},
   XAUUSD:{epic:"CS.D.CFEGOLD.CEB.IP",name:"Spot Gold ($1)",scale:1},
@@ -21,7 +21,7 @@ function ema(v,p){const o=new Array(v.length).fill(null);if(v.length<p)return o;
 function normalize(b){return {timestamp:Number(b.timestamp),open:Number(b.open),high:Number(b.high),low:Number(b.low),close:Number(b.close),volume:b.volume==null?null:Number(b.volume)};}
 function merge(oldBars,newBars){
   const m=new Map(); for(const b of [...oldBars,...newBars]) if(Number.isFinite(Number(b.timestamp)))m.set(Number(b.timestamp),normalize(b));
-  return [...m.values()].sort((a,b)=>a.timestamp-b.timestamp).slice(-HISTORY_BARS);
+  return [...m.values()].sort((a,b)=>a.timestamp-b.timestamp);
 }
 function decorate(raw,now=Date.now()){
   const current=floorHour(now);
