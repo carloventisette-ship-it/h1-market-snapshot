@@ -1,1 +1,42 @@
-name: Update FTSE MIB daily pilot\n\non:\n  workflow_dispatch:\n    inputs:\n      refresh_mode:\n        description: "FTSE MIB refresh mode"\n        required: false\n        default: "auto"\n        type: choice\n        options:\n          - auto\n          - incremental\n          - full\n\npermissions:\n  contents: write\n\nconcurrency:\n  group: ftsemib-daily-pilot\n  cancel-in-progress: true\n\njobs:\n  update:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: actions/setup-node@v4\n        with:\n          node-version: 24\n      - name: Build FTSE MIB D1 pilot\n        env:\n          FTSEMIB_REFRESH_MODE: ${{ inputs.refresh_mode || 'auto' }}\n        run: node scripts/update-ftsemib.js\n      - name: Commit FTSE MIB data\n        run: |\n          git config user.name "github-actions[bot]"\n          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"\n          git add ftsemib-history.json ftsemib-latest.json\n          if git diff --cached --quiet; then exit 0; fi\n          git commit -m "Update FTSE MIB daily pilot"\n          git push\n
+name: Update FTSE MIB daily pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_mode:
+        description: "FTSE MIB refresh mode"
+        required: false
+        default: auto
+        type: choice
+        options:
+          - auto
+          - incremental
+          - full
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ftsemib-daily-pilot
+  cancel-in-progress: true
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build FTSE MIB D1 pilot
+        env:
+          FTSEMIB_REFRESH_MODE: ${{ inputs.refresh_mode || 'auto' }}
+        run: node scripts/update-ftsemib.js
+      - name: Commit FTSE MIB data
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ftsemib-history.json ftsemib-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "Update FTSE MIB daily pilot"
+          git push
