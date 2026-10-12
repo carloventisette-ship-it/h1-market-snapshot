@@ -1,4 +1,4 @@
-name: Discover FTSE MIB IG epics
+name: Test FTSE MIB Twelve Data
 
 on:
   workflow_dispatch:
@@ -14,9 +14,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Discover ENI and Enel markets
+      - name: Test ENI and Enel D1
         env:
-          IG_API_KEY: ${{ secrets.IG_API_KEY }}
-          IG_USERNAME: ${{ secrets.IG_USERNAME }}
-          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          TWELVE_DATA_API_KEY: ${{ secrets.TWELVE_DATA_API_KEY }}
         run: node scripts/discover-ftsemib.js
