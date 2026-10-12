@@ -1,7 +1,7 @@
 const fs = require("fs");
 
 const HOUR_MS=3600000, IG_BASE="https://demo-api.ig.com/gateway/deal";
-const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=80, INCREMENTAL_BARS=3;
+const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=80, INCREMENTAL_BARS=2, HISTORY_BARS=120;
 const MARKETS={
   EURUSD:{epic:"CS.D.EURUSD.CEB.IP",name:"EUR/USD",scale:1},
   XAUUSD:{epic:"CS.D.CFEGOLD.CEB.IP",name:"Spot Gold ($1)",scale:1},
@@ -21,7 +21,7 @@ function ema(v,p){const o=new Array(v.length).fill(null);if(v.length<p)return o;
 function normalize(b){return {timestamp:Number(b.timestamp),open:Number(b.open),high:Number(b.high),low:Number(b.low),close:Number(b.close),volume:b.volume==null?null:Number(b.volume)};}
 function merge(oldBars,newBars){
   const m=new Map(); for(const b of [...oldBars,...newBars]) if(Number.isFinite(Number(b.timestamp)))m.set(Number(b.timestamp),normalize(b));
-  return [...m.values()].sort((a,b)=>a.timestamp-b.timestamp).slice(-BOOTSTRAP_BARS);
+  return [...m.values()].sort((a,b)=>a.timestamp-b.timestamp).slice(-HISTORY_BARS);
 }
 function decorate(raw,now=Date.now()){
   const current=floorHour(now);
@@ -60,18 +60,22 @@ async function fetchBars(auth,cfg,max){
 }
 (async()=>{
   const now=Date.now(),auth=await login();
+  const requestedMode=String(process.env.H1_REFRESH_MODE||"auto").toLowerCase();
+  if(!["auto","incremental","full"].includes(requestedMode))throw new Error(`Invalid H1_REFRESH_MODE: ${requestedMode}`);
   let history={instruments:{}};
   if(fs.existsSync(HISTORY_FILE)){try{history=JSON.parse(fs.readFileSync(HISTORY_FILE,"utf8"));}catch{}}
   const instruments={},errors={};
   for(const [key,cfg] of Object.entries(MARKETS)){
     try{
       const old=history.instruments[key]?.bars||[];
-      const max=old.length>=50?INCREMENTAL_BARS:BOOTSTRAP_BARS;
+      const hasBase=old.length>=50;
+      const doFull=requestedMode==="full"||!hasBase;
+      const max=doFull?BOOTSTRAP_BARS:INCREMENTAL_BARS;
       const got=await fetchBars(auth,cfg,max);
       const merged=merge(old,got.bars);
       history.instruments[key]={epic:cfg.epic,sourceInstrument:cfg.name,bars:merged};
       instruments[key]={source:"IG Demo",sourceSymbol:cfg.epic,sourceInstrument:cfg.name,vwap:null,
-        updateMode:old.length>=50?"incremental":"bootstrap",barsRequested:max,allowance:got.allowance,...decorate(merged,now)};
+        updateMode:doFull?(hasBase?"full-refresh":"bootstrap"):"incremental",requestedMode,barsRequested:max,allowance:got.allowance,...decorate(merged,now)};
     }catch(e){errors[key]=e instanceof Error?e.message:String(e);}
   }
   const output={ok:Object.keys(errors).length===0,generatedAtUtc:new Date(now).toISOString(),generatedAtEuropeRome:romeTime(now),timeframe:"1h",instruments,errors};
