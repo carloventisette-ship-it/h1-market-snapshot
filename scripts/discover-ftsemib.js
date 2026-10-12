@@ -5,7 +5,7 @@ const ITEMS = [
 
 const BASE = "https://grafici.borsaitaliana.it";
 
-async function fetchText(url, headers={}) {
+async function fetchText(url, headers = {}) {
   const res = await fetch(url, {
     headers: {
       "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 Chrome/154 Safari/537.36",
@@ -15,79 +15,116 @@ async function fetchText(url, headers={}) {
     redirect: "follow"
   });
   const text = await res.text();
-  if (!res.ok) throw new Error("HTTP " + res.status + " for " + url + ": " + text.slice(0,300));
+  if (!res.ok) {
+    throw new Error("HTTP " + res.status + " for " + url + ": " + text.slice(0, 300));
+  }
   return { text, res };
 }
 
 function attr(html, name) {
-  const re = new RegExp(name + "=[\\\"\\\']([^\\\"\\\']+)[\\\"\\\']", "i");
-  const m = html.match(re);
-  return m ? m[1] : null;
+  const lower = html.toLowerCase();
+  const needle = name.toLowerCase() + "=";
+  const pos = lower.indexOf(needle);
+  if (pos < 0) return null;
+
+  let i = pos + needle.length;
+  while (html[i] === " " || html[i] === "\t" || html[i] === "\n") i++;
+
+  const quote = html[i];
+  if (quote !== '"' && quote !== "'") return null;
+
+  const end = html.indexOf(quote, i + 1);
+  if (end < 0) return null;
+  return html.slice(i + 1, end);
 }
 
 async function getConfig(item) {
   const page = BASE + "/interactive-chart/" + item.isin + "-" + item.exch + "?lang=it";
-  const {text} = await fetchText(page, {"Accept":"text/html,application/xhtml+xml"});
+  const { text } = await fetchText(page, {
+    Accept: "text/html,application/xhtml+xml"
+  });
+
   const token = attr(text, "token");
-  const url = attr(text, "url") || (BASE + "/api/");
+  const apiUrl = attr(text, "url") || (BASE + "/api/");
   const code = attr(text, "code") || item.isin;
   const exch = attr(text, "exchcode") || item.exch;
+
   if (!token) throw new Error("Chart token not found for " + item.key);
-  return {token, url, code, exch};
+  return { token, apiUrl, code, exch };
+}
+
+function joinUrl(base, path) {
+  return base.replace(/\/+$/, "") + "/" + path.replace(/^\/+/, "");
 }
 
 async function history1M(item) {
   const cfg = await getConfig(item);
-  const endpoint = cfg.url.replace(/\\/?$/, "/") +
-    "instruments/" + encodeURIComponent(cfg.code) + "," + encodeURIComponent(cfg.exch) + ",ISIN/history/period";
+  const path = "instruments/" + cfg.code + "," + cfg.exch + ",ISIN/history/period";
+  const endpoint = joinUrl(cfg.apiUrl, path);
+  const requestUrl = endpoint + "?period=1M";
 
-  const candidates = [
-    endpoint + "?period=1M",
-    endpoint + "?period=1M&add-last-price=false"
+  const authHeaders = [
+    cfg.token,
+    "Bearer " + cfg.token
   ];
 
-  let lastErr;
-  for (const url of candidates) {
+  let lastErr = null;
+
+  for (const authorization of authHeaders) {
     try {
-      const {text,res} = await fetchText(url, {
-        "Accept":"application/json",
-        "Authorization":"Bearer " + cfg.token
+      const { text, res } = await fetchText(requestUrl, {
+        Accept: "application/json",
+        Authorization: authorization
       });
+
       const json = JSON.parse(text);
       const hist = json.history || json;
-      const rows = hist.historyDt || [];
-      if (!Array.isArray(rows) || rows.length===0) throw new Error("No historyDt rows");
+      const rows = Array.isArray(hist.historyDt) ? hist.historyDt : [];
+
+      if (rows.length === 0) throw new Error("No historyDt rows");
+
       return {
-        sourceUrl:url.replace(/([?&])token=[^&]+/gi,"$1token=REDACTED"),
-        status:res.status,
-        keys:Object.keys(hist),
+        status: res.status,
+        keys: Object.keys(hist),
         rows
       };
-    } catch(e) { lastErr=e; }
+    } catch (e) {
+      lastErr = e;
+    }
   }
-  throw lastErr;
+
+  throw lastErr || new Error("History request failed");
 }
 
-(async()=>{
-  let ok=true;
+(async () => {
+  let ok = true;
+
   for (const item of ITEMS) {
     try {
       const r = await history1M(item);
       const rows = r.rows;
-      console.log("\\nHISTORY API TEST " + item.key);
+
+      console.log("\nHISTORY API TEST " + item.key);
       console.log(JSON.stringify({
-        ok:true,
-        status:r.status,
-        rows:rows.length,
-        responseKeys:r.keys,
-        first:rows[0],
-        last:rows[rows.length-1]
-      },null,2));
-    } catch(e) {
-      ok=false;
-      console.log("\\nHISTORY API TEST " + item.key);
-      console.log(JSON.stringify({ok:false,error:e instanceof Error?e.message:String(e)},null,2));
+        ok: true,
+        status: r.status,
+        rows: rows.length,
+        responseKeys: r.keys,
+        first: rows[0],
+        last: rows[rows.length - 1]
+      }, null, 2));
+    } catch (e) {
+      ok = false;
+      console.log("\nHISTORY API TEST " + item.key);
+      console.log(JSON.stringify({
+        ok: false,
+        error: e instanceof Error ? e.message : String(e)
+      }, null, 2));
     }
   }
-  if(!ok) process.exitCode=1;
-})().catch(e=>{console.error(e.stack||e.message);process.exit(1);});
+
+  if (!ok) process.exitCode = 1;
+})().catch((e) => {
+  console.error(e.stack || e.message);
+  process.exit(1);
+});
