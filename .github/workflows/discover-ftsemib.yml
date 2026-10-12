@@ -1,4 +1,4 @@
-name: Test FTSE MIB Borsa Italiana
+name: Inspect FTSE MIB chart source
 
 on:
   workflow_dispatch:
@@ -14,5 +14,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Test ENI and Enel official D1 OHLC
+      - name: Inspect ENI and Enel official chart sources
         run: node scripts/discover-ftsemib.js
