@@ -49,5 +49,33 @@ async function login() {
     }));
     console.log("\nSEARCH "+q);
     console.log(JSON.stringify(rows,null,2));
+
+    const chosen=rows[0];
+    if (!chosen?.epic) throw new Error(`No EPIC found for ${q}`);
+
+    const p=await ig(
+      "/prices/"+encodeURIComponent(chosen.epic)+"?resolution=DAY&max=1&pageSize=1",
+      {version:"3",auth}
+    );
+    const price=(p.data.prices||[])[0];
+    if (!price) throw new Error(`No D1 price returned for ${q} (${chosen.epic})`);
+
+    const mid=x=>{
+      const bid=Number(x?.bid),ask=Number(x?.ask);
+      return Number.isFinite(bid)&&Number.isFinite(ask)?(bid+ask)/2:null;
+    };
+
+    console.log("D1 TEST "+q);
+    console.log(JSON.stringify({
+      epic:chosen.epic,
+      instrumentName:chosen.instrumentName,
+      snapshotTimeUTC:price.snapshotTimeUTC||null,
+      open:mid(price.openPrice),
+      high:mid(price.highPrice),
+      low:mid(price.lowPrice),
+      close:mid(price.closePrice),
+      volume:price.lastTradedVolume??null,
+      allowance:p.data.allowance||null
+    },null,2));
   }
 })().catch(e=>{console.error(e.stack||e.message);process.exit(1);});
