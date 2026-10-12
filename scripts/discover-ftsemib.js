@@ -1,18 +1,14 @@
-const SYMBOLS = [
-  { key: "ENI", symbol: "ENI:XMIL" },
-  { key: "ENEL", symbol: "ENEL:XMIL" }
+const QUERIES = [
+  { key: "ENI", query: "ENI" },
+  { key: "ENEL", query: "ENEL" }
 ];
 
-async function fetchOne(symbol) {
+async function td(path, params = {}) {
   const apiKey = process.env.TWELVE_DATA_API_KEY;
   if (!apiKey) throw new Error("TWELVE_DATA_API_KEY is not configured.");
 
-  const url = new URL("https://api.twelvedata.com/time_series");
-  url.searchParams.set("symbol", symbol);
-  url.searchParams.set("interval", "1day");
-  url.searchParams.set("outputsize", "1");
-  url.searchParams.set("format", "JSON");
-  url.searchParams.set("timezone", "Europe/Rome");
+  const url = new URL("https://api.twelvedata.com/" + path);
+  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, String(v));
   url.searchParams.set("apikey", apiKey);
 
   const response = await fetch(url, {
@@ -21,13 +17,52 @@ async function fetchOne(symbol) {
   });
   const data = await response.json();
 
-  if (!response.ok || data.status === "error" || !Array.isArray(data.values)) {
-    throw new Error(`Twelve Data error for ${symbol}: ${data.message || data.code || "HTTP " + response.status}`);
+  if (!response.ok || data.status === "error") {
+    throw new Error(`Twelve Data error: ${data.message || data.code || "HTTP " + response.status}`);
+  }
+  return data;
+}
+
+async function resolveXmil(query) {
+  const data = await td("symbol_search", { symbol: query });
+  const rows = Array.isArray(data.data) ? data.data : [];
+  const exactXmil = rows.find(r =>
+    String(r.symbol || "").toUpperCase() === query.toUpperCase() &&
+    String(r.mic_code || "").toUpperCase() === "XMIL"
+  );
+  const anyXmil = rows.find(r => String(r.mic_code || "").toUpperCase() === "XMIL");
+  const chosen = exactXmil || anyXmil;
+
+  return {
+    chosen,
+    candidates: rows.slice(0, 20).map(r => ({
+      symbol: r.symbol,
+      instrument_name: r.instrument_name,
+      exchange: r.exchange,
+      mic_code: r.mic_code,
+      country: r.country,
+      currency: r.currency,
+      instrument_type: r.instrument_type,
+      access: r.access || null
+    }))
+  };
+}
+
+async function fetchOne(symbol, micCode) {
+  const data = await td("time_series", {
+    symbol,
+    mic_code: micCode,
+    interval: "1day",
+    outputsize: 1,
+    format: "JSON"
+  });
+
+  if (!Array.isArray(data.values) || !data.values.length) {
+    throw new Error(`No D1 values returned for ${symbol} / ${micCode}`);
   }
 
   const v = data.values[0];
   return {
-    symbol,
     meta: data.meta || null,
     candle: {
       datetime: v.datetime,
@@ -43,17 +78,27 @@ async function fetchOne(symbol) {
 (async () => {
   let ok = true;
 
-  for (const item of SYMBOLS) {
+  for (const item of QUERIES) {
     try {
-      const result = await fetchOne(item.symbol);
-      console.log("\nD1 TEST " + item.key);
-      console.log(JSON.stringify({ ok: true, ...result }, null, 2));
+      const resolved = await resolveXmil(item.query);
+      console.log("\nSEARCH " + item.key);
+      console.log(JSON.stringify(resolved, null, 2));
+
+      if (!resolved.chosen) throw new Error(`No XMIL candidate found for ${item.query}`);
+
+      const result = await fetchOne(resolved.chosen.symbol, resolved.chosen.mic_code);
+
+      console.log("D1 TEST " + item.key);
+      console.log(JSON.stringify({
+        ok: true,
+        resolved: resolved.chosen,
+        ...result
+      }, null, 2));
     } catch (e) {
       ok = false;
       console.log("\nD1 TEST " + item.key);
       console.log(JSON.stringify({
         ok: false,
-        symbol: item.symbol,
         error: e instanceof Error ? e.message : String(e)
       }, null, 2));
     }
