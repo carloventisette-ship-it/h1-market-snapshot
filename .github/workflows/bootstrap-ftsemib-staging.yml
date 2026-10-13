@@ -1,0 +1,35 @@
+name: Bootstrap FTSE MIB D1 staging
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ftsemib-bootstrap-staging
+  cancel-in-progress: false
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate current constituent ISINs
+        run: node scripts/validate-ftsemib-constituents.js
+      - name: Build isolated 40-stock D1 history
+        run: node scripts/bootstrap-ftsemib-staging.js
+      - name: Upload staged history and audit report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ftsemib-d1-bootstrap-staging
+          path: |
+            ftsemib-constituents-validation.json
+            ftsemib-bootstrap-staging/
+          if-no-files-found: warn
+          retention-days: 14
