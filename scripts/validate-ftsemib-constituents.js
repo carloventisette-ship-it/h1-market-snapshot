@@ -12,6 +12,19 @@ async function main() {
   console.log("HTML lengths", pages.map(x => x.length));
   console.log("ISIN tokens", pages.map(x => [...new Set(x.match(/IT[0-9A-Z]{10}/g) || [])].length));
   console.log("Scheda fragments", pages.flatMap(x => (x.match(/.{0,40}\/b\/azioni\/scheda\/.{0,90}/gi) || []).slice(0, 3)));
+  // Inspect limited markup context around ISIN tokens without changing production data.
+  for (let pageIndex = 0; pageIndex < pages.length; pageIndex++) {
+    const html = pages[pageIndex];
+    const snippets = [];
+    const token = /IT[0-9A-Z]{10}/g;
+    for (const match of html.matchAll(token)) {
+      const start = Math.max(0, match.index - 110);
+      const end = Math.min(html.length, match.index + 110);
+      snippets.push(html.slice(start, end).replace(/\\s+/g, " ").slice(0, 220));
+      if (snippets.length >= 5) break;
+    }
+    console.log("ISIN markup samples page " + (pageIndex + 1), JSON.stringify(snippets));
+  }
   const found = new Map();
   for (const html of pages) {
     const links = /<a\b[^>]*href=["']([^"']*\/b\/azioni\/scheda\/([A-Z]{2}[A-Z0-9]{10})[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
