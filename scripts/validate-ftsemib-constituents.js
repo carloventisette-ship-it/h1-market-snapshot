@@ -9,9 +9,12 @@ async function get(url) {
 }
 async function main() {
   const pages = await Promise.all([get(BASE), get(BASE + "?page=2")]);
+  console.log("HTML lengths", pages.map(x => x.length));
+  console.log("ISIN tokens", pages.map(x => [...new Set(x.match(/IT[0-9A-Z]{10}/g) || [])].length));
+  console.log("Scheda fragments", pages.flatMap(x => (x.match(/.{0,40}\/b\/azioni\/scheda\/.{0,90}/gi) || []).slice(0, 3)));
   const found = new Map();
   for (const html of pages) {
-    const links = /<a\b[^>]*href=["']([^"']*\/b\/azioni\/scheda\/([A-Z]{2}[A-Z0-9]{10})-[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
+    const links = /<a\b[^>]*href=["']([^"']*\/b\/azioni\/scheda\/([A-Z]{2}[A-Z0-9]{10})[^"']*)["'][^>]*>([\s\S]*?)<\/a>/gi;
     for (const m of html.matchAll(links)) {
       const name = m[3].replace(/<[^>]+>/g, "").replace(/&[^;]+;/g, " ").trim();
       if (name) found.set(normalize(name), m[2]);
