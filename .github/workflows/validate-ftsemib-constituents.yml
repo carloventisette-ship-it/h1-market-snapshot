@@ -1,0 +1,25 @@
+name: Validate FTSE MIB constituents
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Validate ISINs from official listing
+        run: node scripts/validate-ftsemib-constituents.js
+      - name: Upload validation report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ftsemib-constituents-validation
+          path: ftsemib-constituents-validation.json
+          if-no-files-found: warn
