@@ -1,4 +1,4 @@
-name: Update FTSE MIB daily pilot
+name: Update FTSE MIB daily 40
 
 on:
   workflow_dispatch:
@@ -26,6 +26,7 @@ concurrency:
 jobs:
   update:
     runs-on: ubuntu-latest
+    timeout-minutes: 25
     steps:
       - name: Check Europe Rome schedule
         id: gate
@@ -53,7 +54,7 @@ jobs:
         with:
           node-version: 24
 
-      - name: Build FTSE MIB D1 pilot
+      - name: Build FTSE MIB D1 40 stocks
         if: steps.gate.outputs.run == 'true'
         env:
           FTSEMIB_REFRESH_MODE: ${{ github.event_name == 'workflow_dispatch' && (inputs.refresh_mode || 'auto') || 'auto' }}
