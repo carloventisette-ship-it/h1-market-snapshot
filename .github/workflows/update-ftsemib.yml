@@ -39,7 +39,7 @@ jobs:
           LOCAL_TIME=$(TZ=Europe/Rome date +%H:%M)
           LOCAL_DOW=$(TZ=Europe/Rome date +%u)
 
-          if [ "$LOCAL_TIME" = "18:30" ] && [ "$LOCAL_DOW" -ge 1 ] && [ "$LOCAL_DOW" -le 5 ]; then
+          if [ "$LOCAL_DOW" -ge 1 ] && [ "$LOCAL_DOW" -le 5 ] && [[ "$LOCAL_TIME" > "18:29" && "$LOCAL_TIME" < "19:15" ]]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
