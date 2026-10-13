@@ -1,247 +1,247 @@
 {
   "source": "Borsa Italiana FTSE MIB constituents",
   "asOf": "2026-10-13",
-  "notes": "Staging manifest only. Entries with null ISIN must not be fetched until verified against official instrument pages. Existing ENI/ENEL production pilot remains unchanged.",
+  "notes": "All 40 ISINs validated against Borsa Italiana official listings on 2026-10-13; isolated D1 bootstrap confirmed 80 completed candles for each. Production integration requires post-run check.",
   "instruments": [
     {
       "name": "A2A",
-      "isin": null,
+      "isin": "IT0001233417",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Amplifon",
-      "isin": null,
+      "isin": "IT0004056880",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Avio",
-      "isin": null,
+      "isin": "IT0005119810",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Azimut",
-      "isin": null,
+      "isin": "IT0003261697",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Banca Mediolanum",
-      "isin": null,
+      "isin": "IT0004776628",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Banca Monte dei Paschi di Siena",
-      "isin": null,
+      "isin": "IT0005508921",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Banco BPM",
-      "isin": null,
+      "isin": "IT0005218380",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "BPER Banca",
-      "isin": null,
+      "isin": "IT0000066123",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Brunello Cucinelli",
-      "isin": null,
+      "isin": "IT0004764699",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Buzzi",
-      "isin": null,
+      "isin": "IT0001347308",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Campari",
-      "isin": null,
+      "isin": "NL0015435975",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Technoprobe",
-      "isin": null,
+      "isin": "IT0005482333",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Enel",
       "isin": "IT0003128367",
       "exchange": "XMIL",
-      "status": "validated"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Eni",
       "isin": "IT0003132476",
       "exchange": "XMIL",
-      "status": "validated"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Ferrari",
-      "isin": null,
+      "isin": "NL0011585146",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Fincantieri",
-      "isin": null,
+      "isin": "IT0005599938",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "FinecoBank",
-      "isin": null,
+      "isin": "IT0000072170",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Generali",
-      "isin": null,
+      "isin": "IT0000062072",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Hera",
-      "isin": null,
+      "isin": "IT0001250932",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Intesa Sanpaolo",
-      "isin": null,
+      "isin": "IT0000072618",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Inwit",
-      "isin": null,
+      "isin": "IT0005090300",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Italgas",
-      "isin": null,
+      "isin": "IT0005211237",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Iveco Group",
-      "isin": null,
+      "isin": "NL0015000LU4",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Leonardo",
-      "isin": null,
+      "isin": "IT0003856405",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Lottomatica Group",
-      "isin": null,
+      "isin": "IT0005541336",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Mediobanca",
-      "isin": null,
+      "isin": "IT0000062957",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Moncler",
-      "isin": null,
+      "isin": "IT0004965148",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Nexi",
-      "isin": null,
+      "isin": "IT0005366767",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Poste Italiane",
-      "isin": null,
+      "isin": "IT0003796171",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Prysmian",
-      "isin": null,
+      "isin": "IT0004176001",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Recordati",
-      "isin": null,
+      "isin": "IT0003828271",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Saipem",
-      "isin": null,
+      "isin": "IT0005495657",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Snam",
-      "isin": null,
+      "isin": "IT0003153415",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Stellantis",
-      "isin": null,
+      "isin": "NL00150001Q9",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "STMicroelectronics",
-      "isin": null,
+      "isin": "NL0000226223",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Telecom Italia",
-      "isin": null,
+      "isin": "IT0005712671",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Tenaris",
-      "isin": null,
+      "isin": "LU2598331598",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Terna",
-      "isin": null,
+      "isin": "IT0003242622",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "UniCredit",
-      "isin": null,
+      "isin": "IT0005239360",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     },
     {
       "name": "Unipol",
-      "isin": null,
+      "isin": "IT0004810054",
       "exchange": "XMIL",
-      "status": "pending_isin_verification"
+      "status": "validated_official_listing_and_80_d1_bars"
     }
   ]
 }
