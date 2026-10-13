@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "generatedAtUtc": "2026-10-12T09:54:13.120Z",
-  "generatedAtEuropeRome": "2026-10-12T11:54:13",
+  "generatedAtUtc": "2026-10-13T07:31:21.077Z",
+  "generatedAtEuropeRome": "2026-10-13T09:31:21",
   "timeframe": "1d",
   "source": "Borsa Italiana official chart API",
   "indicators": [
@@ -15,13 +15,24 @@
       "name": "Eni",
       "isin": "IT0003132476",
       "exchange": "XMIL",
-      "barsStored": 80,
+      "barsStored": 81,
       "mode": "incremental",
       "requestedMode": "auto",
       "sourcePeriod": "1M",
-      "sourceBarsReceived": 20,
+      "sourceBarsReceived": 21,
       "barsMergedFromFetch": 2,
       "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 25.06,
+        "high": 25.6,
+        "low": 25.045,
+        "close": 25.405,
+        "ema10": 24.634951,
+        "sma20": 24.27225,
+        "sma50": 23.8701
+      },
+      "previousCompleted": {
         "timestamp": 1791504000000,
         "date": "2026-10-09",
         "open": 24.59,
@@ -32,34 +43,34 @@
         "sma20": 24.2025,
         "sma50": 23.8359
       },
-      "previousCompleted": {
-        "timestamp": 1791417600000,
-        "date": "2026-10-08",
-        "open": 24.4,
-        "high": 25.05,
-        "low": 24.345,
-        "close": 24.88,
-        "ema10": 24.298013,
-        "sma20": 24.142,
-        "sma50": 23.8113
-      },
       "indicators": {
-        "ema10": 24.463829,
-        "sma20": 24.2025,
-        "sma50": 23.8359
+        "ema10": 24.634951,
+        "sma20": 24.27225,
+        "sma50": 23.8701
       }
     },
     "ENEL": {
       "name": "Enel",
       "isin": "IT0003128367",
       "exchange": "XMIL",
-      "barsStored": 80,
+      "barsStored": 81,
       "mode": "incremental",
       "requestedMode": "auto",
       "sourcePeriod": "1M",
-      "sourceBarsReceived": 20,
+      "sourceBarsReceived": 21,
       "barsMergedFromFetch": 2,
       "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 8.923,
+        "high": 8.977,
+        "low": 8.878,
+        "close": 8.918,
+        "ema10": 8.81939,
+        "sma20": 8.82725,
+        "sma50": 9.1851
+      },
+      "previousCompleted": {
         "timestamp": 1791504000000,
         "date": "2026-10-09",
         "open": 8.817,
@@ -70,21 +81,10 @@
         "sma20": 8.81845,
         "sma50": 9.20498
       },
-      "previousCompleted": {
-        "timestamp": 1791417600000,
-        "date": "2026-10-08",
-        "open": 8.7,
-        "high": 8.86,
-        "low": 8.677,
-        "close": 8.758,
-        "ema10": 8.782028,
-        "sma20": 8.82295,
-        "sma50": 9.22362
-      },
       "indicators": {
-        "ema10": 8.797477,
-        "sma20": 8.81845,
-        "sma50": 9.20498
+        "ema10": 8.81939,
+        "sma20": 8.82725,
+        "sma50": 9.1851
       }
     }
   },
