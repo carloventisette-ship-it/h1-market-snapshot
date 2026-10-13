@@ -27,7 +27,7 @@ async function main() {
   }
   const found = new Map();
   for (const html of pages) {
-    const links = /<a\\b[^>]*href=["'][^"']*\\/borsa\\/azioni\\/scheda\\/([A-Z]{2}[A-Z0-9]{10})-[^"']*["'][^>]*>([\\s\\S]*?)<\\/a>/gi;
+    const links = new RegExp('<a\\b[^>]*href=["\\\x27][^"\\\x27]*/borsa/azioni/scheda/([A-Z]{2}[A-Z0-9]{10})-[^"\\\x27]*["\\\x27][^>]*>([\\s\\S]*?)</a>', 'gi');
     for (const m of html.matchAll(links)) {
       const name = m[2].replace(/<[^>]+>/g, "").replace(/&[^;]+;/g, " ").trim();
       if (name) found.set(normalize(name), m[1]);
