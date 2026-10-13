@@ -6,10 +6,33 @@ const SNAPSHOT_FILE = "ftsemib-latest.json";
 const BOOTSTRAP_BARS = 80;
 const INCREMENTAL_BARS = 2;
 
-const INSTRUMENTS = [
-  { symbol: "ENI", name: "Eni", isin: "IT0003132476", exch: "XMIL" },
-  { symbol: "ENEL", name: "Enel", isin: "IT0003128367", exch: "XMIL" }
-];
+const catalog = JSON.parse(fs.readFileSync("ftsemib-constituents.json", "utf8"));
+function symbolFor(name) {
+  const alias = { "Eni": "ENI", "Enel": "ENEL" };
+  return alias[name] || name.toUpperCase().normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "").replace(/[^A-Z0-9]+/g, "_").replace(/^_|_$/g, "");
+}
+const INSTRUMENTS = catalog.instruments.map(x => ({
+  symbol: symbolFor(x.name), name: x.name, isin: x.isin, exch: x.exchange
+}));
+if (INSTRUMENTS.length !== 40 ||
+    new Set(INSTRUMENTS.map(x => x.symbol)).size !== 40 ||
+    new Set(INSTRUMENTS.map(x => x.isin)).size !== 40 ||
+    INSTRUMENTS.some(x => !/^[A-Z]{2}[A-Z0-9]{10}$/.test(x.isin) || x.exch !== "XMIL")) {
+  throw new Error("Invalid 40-stock FTSE MIB catalog; refusing production update");
+}
+function romeDateTime() {
+  return new Intl.DateTimeFormat("sv-SE", { timeZone: "Europe/Rome",
+    year: "numeric", month: "2-digit", day: "2-digit",
+    hour: "2-digit", minute: "2-digit", hour12: false }).format(new Date());
+}
+function isCompletedBar(b) {
+  const now = romeDateTime();
+  const date = now.slice(0, 10);
+  // During market hours the official chart can expose an incomplete daily candle.
+  return b.date < date || (b.date === date && now.slice(11, 16) >= "18:30");
+}
+
 
 function round(v, d = 6) {
   return v == null || Number.isNaN(Number(v)) ? null : Number(Number(v).toFixed(d));
@@ -201,7 +224,8 @@ function romeNowIso() {
     indicators: ["EMA10", "SMA20", "SMA50"],
     requestedMode,
     instruments: {},
-    errors: {}
+    errors: {},
+    expectedInstruments: INSTRUMENTS.length
   };
 
   for (const cfg of INSTRUMENTS) {
@@ -211,6 +235,7 @@ function romeNowIso() {
       const doFull = requestedMode === "full" || !hasBase;
       const period = doFull ? "6M" : "1M";
       const got = await fetchHistory(cfg, period);
+      got.bars = got.bars.filter(isCompletedBar);
 
       if (doFull && got.bars.length < BOOTSTRAP_BARS) {
         throw new Error(`Only ${got.bars.length} daily bars returned for ${cfg.symbol}; need at least ${BOOTSTRAP_BARS}`);
@@ -224,6 +249,7 @@ function romeNowIso() {
         : got.bars.slice(-INCREMENTAL_BARS);
 
       const merged = decorate(mergeBars(old, selected));
+      if (!merged.length) throw new Error(`No completed bars stored for ${cfg.symbol}`);
       history.instruments[cfg.symbol] = {
         name: cfg.name,
         isin: cfg.isin,
@@ -256,6 +282,8 @@ function romeNowIso() {
     }
   }
 
+  output.completedInstruments = Object.keys(output.instruments).length;
+  output.failedInstruments = Object.keys(output.errors).length;
   fs.writeFileSync(HISTORY_FILE, JSON.stringify(history, null, 2) + "\n");
   fs.writeFileSync(SNAPSHOT_FILE, JSON.stringify(output, null, 2) + "\n");
 
