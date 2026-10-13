@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "generatedAtUtc": "2026-10-13T07:31:21.077Z",
-  "generatedAtEuropeRome": "2026-10-13T09:31:21",
+  "generatedAtUtc": "2026-10-13T08:50:56.948Z",
+  "generatedAtEuropeRome": "2026-10-13T10:50:56",
   "timeframe": "1d",
   "source": "Borsa Italiana official chart API",
   "indicators": [
@@ -11,42 +11,460 @@
   ],
   "requestedMode": "auto",
   "instruments": {
-    "ENI": {
-      "name": "Eni",
-      "isin": "IT0003132476",
+    "A2A": {
+      "name": "A2A",
+      "isin": "IT0001233417",
       "exchange": "XMIL",
-      "barsStored": 81,
-      "mode": "incremental",
+      "barsStored": 80,
+      "mode": "bootstrap",
       "requestedMode": "auto",
-      "sourcePeriod": "1M",
-      "sourceBarsReceived": 21,
-      "barsMergedFromFetch": 2,
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
       "latestCompleted": {
         "timestamp": 1791763200000,
         "date": "2026-10-12",
-        "open": 25.06,
-        "high": 25.6,
-        "low": 25.045,
-        "close": 25.405,
-        "ema10": 24.634951,
-        "sma20": 24.27225,
-        "sma50": 23.8701
+        "open": 2.28,
+        "high": 2.32,
+        "low": 2.28,
+        "close": 2.32,
+        "ema10": 2.272546,
+        "sma20": 2.2875,
+        "sma50": 2.29948
       },
       "previousCompleted": {
         "timestamp": 1791504000000,
         "date": "2026-10-09",
-        "open": 24.59,
-        "high": 25.24,
-        "low": 24.555,
-        "close": 25.21,
-        "ema10": 24.463829,
-        "sma20": 24.2025,
-        "sma50": 23.8359
+        "open": 2.291,
+        "high": 2.3,
+        "low": 2.26,
+        "close": 2.268,
+        "ema10": 2.262,
+        "sma20": 2.2874,
+        "sma50": 2.29908
       },
       "indicators": {
-        "ema10": 24.634951,
-        "sma20": 24.27225,
-        "sma50": 23.8701
+        "ema10": 2.272546,
+        "sma20": 2.2875,
+        "sma50": 2.29948
+      }
+    },
+    "AMPLIFON": {
+      "name": "Amplifon",
+      "isin": "IT0004056880",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 12.835,
+        "high": 12.96,
+        "low": 12.63,
+        "close": 12.65,
+        "ema10": 12.207591,
+        "sma20": 11.8715,
+        "sma50": 11.925
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 12.24,
+        "high": 12.92,
+        "low": 12.185,
+        "close": 12.86,
+        "ema10": 12.109278,
+        "sma20": 11.81025,
+        "sma50": 11.9141
+      },
+      "indicators": {
+        "ema10": 12.207591,
+        "sma20": 11.8715,
+        "sma50": 11.925
+      }
+    },
+    "AVIO": {
+      "name": "Avio",
+      "isin": "IT0005119810",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 28.71,
+        "high": 29.63,
+        "low": 28.69,
+        "close": 29.17,
+        "ema10": 29.052418,
+        "sma20": 29.007,
+        "sma50": 30.1198
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 29.04,
+        "high": 29.17,
+        "low": 28.39,
+        "close": 28.39,
+        "ema10": 29.026288,
+        "sma20": 28.957,
+        "sma50": 30.1422
+      },
+      "indicators": {
+        "ema10": 29.052418,
+        "sma20": 29.007,
+        "sma50": 30.1198
+      }
+    },
+    "AZIMUT": {
+      "name": "Azimut",
+      "isin": "IT0003261697",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 36.99,
+        "high": 37.09,
+        "low": 36.14,
+        "close": 36.26,
+        "ema10": 37.371226,
+        "sma20": 38.3635,
+        "sma50": 38.4874
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 36.81,
+        "high": 37.5,
+        "low": 36.76,
+        "close": 36.76,
+        "ema10": 37.618165,
+        "sma20": 38.4605,
+        "sma50": 38.5164
+      },
+      "indicators": {
+        "ema10": 37.371226,
+        "sma20": 38.3635,
+        "sma50": 38.4874
+      }
+    },
+    "BANCA_MEDIOLANUM": {
+      "name": "Banca Mediolanum",
+      "isin": "IT0004776628",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 23.16,
+        "high": 23.33,
+        "low": 22.87,
+        "close": 23,
+        "ema10": 23.117033,
+        "sma20": 23.277,
+        "sma50": 23.657
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 22.85,
+        "high": 23.2,
+        "low": 22.85,
+        "close": 22.9,
+        "ema10": 23.143041,
+        "sma20": 23.286,
+        "sma50": 23.6686
+      },
+      "indicators": {
+        "ema10": 23.117033,
+        "sma20": 23.277,
+        "sma50": 23.657
+      }
+    },
+    "BANCA_MONTE_DEI_PASCHI_DI_SIENA": {
+      "name": "Banca Monte dei Paschi di Siena",
+      "isin": "IT0005508921",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 11.08,
+        "high": 11.196,
+        "low": 11.078,
+        "close": 11.15,
+        "ema10": 11.305086,
+        "sma20": 11.6115,
+        "sma50": 11.67704
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 10.96,
+        "high": 11.046,
+        "low": 10.91,
+        "close": 11,
+        "ema10": 11.339549,
+        "sma20": 11.6355,
+        "sma50": 11.68556
+      },
+      "indicators": {
+        "ema10": 11.305086,
+        "sma20": 11.6115,
+        "sma50": 11.67704
+      }
+    },
+    "BANCO_BPM": {
+      "name": "Banco BPM",
+      "isin": "IT0005218380",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 14.9,
+        "high": 14.99,
+        "low": 14.785,
+        "close": 14.865,
+        "ema10": 15.182162,
+        "sma20": 15.7,
+        "sma50": 16.1581
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 14.76,
+        "high": 14.83,
+        "low": 14.655,
+        "close": 14.735,
+        "ema10": 15.252642,
+        "sma20": 15.76175,
+        "sma50": 16.183
+      },
+      "indicators": {
+        "ema10": 15.182162,
+        "sma20": 15.7,
+        "sma50": 16.1581
+      }
+    },
+    "BPER_BANCA": {
+      "name": "BPER Banca",
+      "isin": "IT0000066123",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 13.368,
+        "high": 13.674,
+        "low": 13.368,
+        "close": 13.584,
+        "ema10": 13.669874,
+        "sma20": 13.9887,
+        "sma50": 14.19792
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 13.312,
+        "high": 13.516,
+        "low": 13.294,
+        "close": 13.294,
+        "ema10": 13.688957,
+        "sma20": 14.0309,
+        "sma50": 14.2166
+      },
+      "indicators": {
+        "ema10": 13.669874,
+        "sma20": 13.9887,
+        "sma50": 14.19792
+      }
+    },
+    "BRUNELLO_CUCINELLI": {
+      "name": "Brunello Cucinelli",
+      "isin": "IT0004764699",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 81,
+        "high": 81.9,
+        "low": 80.76,
+        "close": 81.2,
+        "ema10": 80.589551,
+        "sma20": 80.145,
+        "sma50": 83.7488
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 80.42,
+        "high": 81.82,
+        "low": 80.26,
+        "close": 80.56,
+        "ema10": 80.453895,
+        "sma20": 79.893,
+        "sma50": 83.9716
+      },
+      "indicators": {
+        "ema10": 80.589551,
+        "sma20": 80.145,
+        "sma50": 83.7488
+      }
+    },
+    "BUZZI": {
+      "name": "Buzzi",
+      "isin": "IT0001347308",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 37,
+        "high": 37.27,
+        "low": 36.67,
+        "close": 37.14,
+        "ema10": 37.161679,
+        "sma20": 37.3845,
+        "sma50": 39.2186
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 36.48,
+        "high": 37.16,
+        "low": 36.48,
+        "close": 36.86,
+        "ema10": 37.166496,
+        "sma20": 37.414,
+        "sma50": 39.3168
+      },
+      "indicators": {
+        "ema10": 37.161679,
+        "sma20": 37.3845,
+        "sma50": 39.2186
+      }
+    },
+    "CAMPARI": {
+      "name": "Campari",
+      "isin": "NL0015435975",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 6.092,
+        "high": 6.302,
+        "low": 6.092,
+        "close": 6.274,
+        "ema10": 6.093678,
+        "sma20": 6.0317,
+        "sma50": 5.92528
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 6.18,
+        "high": 6.192,
+        "low": 6.09,
+        "close": 6.092,
+        "ema10": 6.053606,
+        "sma20": 6.0198,
+        "sma50": 5.9178
+      },
+      "indicators": {
+        "ema10": 6.093678,
+        "sma20": 6.0317,
+        "sma50": 5.92528
+      }
+    },
+    "TECHNOPROBE": {
+      "name": "Technoprobe",
+      "isin": "IT0005482333",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 33.96,
+        "high": 34.34,
+        "low": 33.14,
+        "close": 33.32,
+        "ema10": 33.676796,
+        "sma20": 31.984,
+        "sma50": 29.9852
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 33.92,
+        "high": 35.18,
+        "low": 33.72,
+        "close": 34.18,
+        "ema10": 33.756084,
+        "sma20": 31.735,
+        "sma50": 29.8644
+      },
+      "indicators": {
+        "ema10": 33.676796,
+        "sma20": 31.984,
+        "sma50": 29.9852
       }
     },
     "ENEL": {
@@ -86,7 +504,1036 @@
         "sma20": 8.82725,
         "sma50": 9.1851
       }
+    },
+    "ENI": {
+      "name": "Eni",
+      "isin": "IT0003132476",
+      "exchange": "XMIL",
+      "barsStored": 81,
+      "mode": "incremental",
+      "requestedMode": "auto",
+      "sourcePeriod": "1M",
+      "sourceBarsReceived": 21,
+      "barsMergedFromFetch": 2,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 25.06,
+        "high": 25.6,
+        "low": 25.045,
+        "close": 25.405,
+        "ema10": 24.634951,
+        "sma20": 24.27225,
+        "sma50": 23.8701
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 24.59,
+        "high": 25.24,
+        "low": 24.555,
+        "close": 25.21,
+        "ema10": 24.463829,
+        "sma20": 24.2025,
+        "sma50": 23.8359
+      },
+      "indicators": {
+        "ema10": 24.634951,
+        "sma20": 24.27225,
+        "sma50": 23.8701
+      }
+    },
+    "FERRARI": {
+      "name": "Ferrari",
+      "isin": "NL0011585146",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 349.25,
+        "high": 352.65,
+        "low": 347.4,
+        "close": 351,
+        "ema10": 347.647363,
+        "sma20": 351.74,
+        "sma50": 354.677
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 347.45,
+        "high": 350.4,
+        "low": 346.35,
+        "close": 347.85,
+        "ema10": 346.902333,
+        "sma20": 351.7975,
+        "sma50": 354.59
+      },
+      "indicators": {
+        "ema10": 347.647363,
+        "sma20": 351.74,
+        "sma50": 354.677
+      }
+    },
+    "FINCANTIERI": {
+      "name": "Fincantieri",
+      "isin": "IT0005599938",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 12.4,
+        "high": 12.745,
+        "low": 12.4,
+        "close": 12.57,
+        "ema10": 12.241473,
+        "sma20": 12.22775,
+        "sma50": 12.4611
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 11.735,
+        "high": 12.525,
+        "low": 11.69,
+        "close": 12.485,
+        "ema10": 12.168467,
+        "sma20": 12.214,
+        "sma50": 12.4811
+      },
+      "indicators": {
+        "ema10": 12.241473,
+        "sma20": 12.22775,
+        "sma50": 12.4611
+      }
+    },
+    "FINECOBANK": {
+      "name": "FinecoBank",
+      "isin": "IT0000072170",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 21.44,
+        "high": 21.58,
+        "low": 21.24,
+        "close": 21.3,
+        "ema10": 21.539684,
+        "sma20": 22.0335,
+        "sma50": 23.0836
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 21.23,
+        "high": 21.46,
+        "low": 21.15,
+        "close": 21.32,
+        "ema10": 21.592947,
+        "sma20": 22.1055,
+        "sma50": 23.1404
+      },
+      "indicators": {
+        "ema10": 21.539684,
+        "sma20": 22.0335,
+        "sma50": 23.0836
+      }
+    },
+    "GENERALI": {
+      "name": "Generali",
+      "isin": "IT0000062072",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 41.83,
+        "high": 42.09,
+        "low": 41.83,
+        "close": 42.06,
+        "ema10": 42.131933,
+        "sma20": 43.319,
+        "sma50": 43.8444
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 41.35,
+        "high": 41.71,
+        "low": 41.23,
+        "close": 41.6,
+        "ema10": 42.147918,
+        "sma20": 43.4765,
+        "sma50": 43.8896
+      },
+      "indicators": {
+        "ema10": 42.131933,
+        "sma20": 43.319,
+        "sma50": 43.8444
+      }
+    },
+    "HERA": {
+      "name": "Hera",
+      "isin": "IT0001250932",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 3.466,
+        "high": 3.49,
+        "low": 3.464,
+        "close": 3.48,
+        "ema10": 3.49277,
+        "sma20": 3.5475,
+        "sma50": 3.69172
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 3.496,
+        "high": 3.51,
+        "low": 3.452,
+        "close": 3.452,
+        "ema10": 3.495608,
+        "sma20": 3.5516,
+        "sma50": 3.69944
+      },
+      "indicators": {
+        "ema10": 3.49277,
+        "sma20": 3.5475,
+        "sma50": 3.69172
+      }
+    },
+    "INTESA_SANPAOLO": {
+      "name": "Intesa Sanpaolo",
+      "isin": "IT0000072618",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 6.18,
+        "high": 6.223,
+        "low": 6.159,
+        "close": 6.184,
+        "ema10": 6.332894,
+        "sma20": 6.5526,
+        "sma50": 6.69226
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 6.133,
+        "high": 6.148,
+        "low": 6.07,
+        "close": 6.116,
+        "ema10": 6.365982,
+        "sma20": 6.57895,
+        "sma50": 6.7025
+      },
+      "indicators": {
+        "ema10": 6.332894,
+        "sma20": 6.5526,
+        "sma50": 6.69226
+      }
+    },
+    "INWIT": {
+      "name": "Inwit",
+      "isin": "IT0005090300",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 7.055,
+        "high": 7.375,
+        "low": 7.01,
+        "close": 7.15,
+        "ema10": 6.753386,
+        "sma20": 6.6,
+        "sma50": 6.387
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 6.675,
+        "high": 7.08,
+        "low": 6.66,
+        "close": 7.025,
+        "ema10": 6.665249,
+        "sma20": 6.5645,
+        "sma50": 6.3749
+      },
+      "indicators": {
+        "ema10": 6.753386,
+        "sma20": 6.6,
+        "sma50": 6.387
+      }
+    },
+    "ITALGAS": {
+      "name": "Italgas",
+      "isin": "IT0005211237",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 8.198,
+        "high": 8.27,
+        "low": 8.18,
+        "close": 8.252,
+        "ema10": 8.223552,
+        "sma20": 8.311,
+        "sma50": 8.51512
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 8.236,
+        "high": 8.258,
+        "low": 8.146,
+        "close": 8.162,
+        "ema10": 8.217231,
+        "sma20": 8.3024,
+        "sma50": 8.53096
+      },
+      "indicators": {
+        "ema10": 8.223552,
+        "sma20": 8.311,
+        "sma50": 8.51512
+      }
+    },
+    "IVECO_GROUP": {
+      "name": "Iveco Group",
+      "isin": "NL0015000LU4",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 14.37,
+        "high": 14.4,
+        "low": 14.33,
+        "close": 14.335,
+        "ema10": 14.281081,
+        "sma20": 14.19925,
+        "sma50": 14.0606
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 14.29,
+        "high": 14.53,
+        "low": 14.29,
+        "close": 14.4,
+        "ema10": 14.269098,
+        "sma20": 14.186,
+        "sma50": 14.0517
+      },
+      "indicators": {
+        "ema10": 14.281081,
+        "sma20": 14.19925,
+        "sma50": 14.0606
+      }
+    },
+    "LEONARDO": {
+      "name": "Leonardo",
+      "isin": "IT0003856405",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 46.57,
+        "high": 47.64,
+        "low": 46.385,
+        "close": 47.64,
+        "ema10": 47.525444,
+        "sma20": 48.7535,
+        "sma50": 52.3631
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 45.66,
+        "high": 46.815,
+        "low": 45.62,
+        "close": 46.81,
+        "ema10": 47.499987,
+        "sma20": 48.835,
+        "sma50": 52.5045
+      },
+      "indicators": {
+        "ema10": 47.525444,
+        "sma20": 48.7535,
+        "sma50": 52.3631
+      }
+    },
+    "LOTTOMATICA_GROUP": {
+      "name": "Lottomatica Group",
+      "isin": "IT0005541336",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 24.72,
+        "high": 24.72,
+        "low": 24.26,
+        "close": 24.36,
+        "ema10": 24.96993,
+        "sma20": 26.0085,
+        "sma50": 25.3212
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 24.6,
+        "high": 24.92,
+        "low": 24.45,
+        "close": 24.53,
+        "ema10": 25.10547,
+        "sma20": 26.1505,
+        "sma50": 25.3144
+      },
+      "indicators": {
+        "ema10": 24.96993,
+        "sma20": 26.0085,
+        "sma50": 25.3212
+      }
+    },
+    "MEDIOBANCA": {
+      "name": "Mediobanca",
+      "isin": "IT0000062957",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 25.4,
+        "high": 25.61,
+        "low": 25.28,
+        "close": 25.57,
+        "ema10": 26.3015,
+        "sma20": 27.636,
+        "sma50": 28.012
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 25.28,
+        "high": 25.32,
+        "low": 24.74,
+        "close": 25.24,
+        "ema10": 26.464055,
+        "sma20": 27.756,
+        "sma50": 28.0582
+      },
+      "indicators": {
+        "ema10": 26.3015,
+        "sma20": 27.636,
+        "sma50": 28.012
+      }
+    },
+    "MONCLER": {
+      "name": "Moncler",
+      "isin": "IT0004965148",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 43.6,
+        "high": 44.25,
+        "low": 43.39,
+        "close": 44.09,
+        "ema10": 43.702685,
+        "sma20": 43.765,
+        "sma50": 46.0582
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 43.23,
+        "high": 44.37,
+        "low": 43.23,
+        "close": 43.52,
+        "ema10": 43.616615,
+        "sma20": 43.7775,
+        "sma50": 46.1792
+      },
+      "indicators": {
+        "ema10": 43.702685,
+        "sma20": 43.765,
+        "sma50": 46.0582
+      }
+    },
+    "NEXI": {
+      "name": "Nexi",
+      "isin": "IT0005366767",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 4.214,
+        "high": 4.313,
+        "low": 4.214,
+        "close": 4.308,
+        "ema10": 4.171557,
+        "sma20": 4.15265,
+        "sma50": 4.21212
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 4.17,
+        "high": 4.266,
+        "low": 4.154,
+        "close": 4.204,
+        "ema10": 4.141237,
+        "sma20": 4.14575,
+        "sma50": 4.21218
+      },
+      "indicators": {
+        "ema10": 4.171557,
+        "sma20": 4.15265,
+        "sma50": 4.21212
+      }
+    },
+    "POSTE_ITALIANE": {
+      "name": "Poste Italiane",
+      "isin": "IT0003796171",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 24.45,
+        "high": 24.5,
+        "low": 24.2,
+        "close": 24.35,
+        "ema10": 24.582427,
+        "sma20": 25.3265,
+        "sma50": 26.3124
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 24.04,
+        "high": 24.18,
+        "low": 23.84,
+        "close": 24.11,
+        "ema10": 24.634077,
+        "sma20": 25.406,
+        "sma50": 26.3596
+      },
+      "indicators": {
+        "ema10": 24.582427,
+        "sma20": 25.3265,
+        "sma50": 26.3124
+      }
+    },
+    "PRYSMIAN": {
+      "name": "Prysmian",
+      "isin": "IT0004176001",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 123.3,
+        "high": 124.8,
+        "low": 121.35,
+        "close": 122.45,
+        "ema10": 124.547086,
+        "sma20": 124.43,
+        "sma50": 124.168
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 123.05,
+        "high": 123.8,
+        "low": 120.05,
+        "close": 123.2,
+        "ema10": 125.013105,
+        "sma20": 124.22,
+        "sma50": 124.108
+      },
+      "indicators": {
+        "ema10": 124.547086,
+        "sma20": 124.43,
+        "sma50": 124.168
+      }
+    },
+    "RECORDATI": {
+      "name": "Recordati",
+      "isin": "IT0003828271",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 52.95,
+        "high": 53,
+        "low": 52.95,
+        "close": 52.95,
+        "ema10": 52.869082,
+        "sma20": 52.8325,
+        "sma50": 52.609
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 53,
+        "high": 53.05,
+        "low": 52.95,
+        "close": 53,
+        "ema10": 52.851101,
+        "sma20": 52.8025,
+        "sma50": 52.583
+      },
+      "indicators": {
+        "ema10": 52.869082,
+        "sma20": 52.8325,
+        "sma50": 52.609
+      }
+    },
+    "SAIPEM": {
+      "name": "Saipem",
+      "isin": "IT0005495657",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 4.58,
+        "high": 4.663,
+        "low": 4.569,
+        "close": 4.647,
+        "ema10": 4.452104,
+        "sma20": 4.37135,
+        "sma50": 4.40362
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 4.42,
+        "high": 4.57,
+        "low": 4.408,
+        "close": 4.57,
+        "ema10": 4.408794,
+        "sma20": 4.34685,
+        "sma50": 4.39632
+      },
+      "indicators": {
+        "ema10": 4.452104,
+        "sma20": 4.37135,
+        "sma50": 4.40362
+      }
+    },
+    "SNAM": {
+      "name": "Snam",
+      "isin": "IT0003153415",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 5.63,
+        "high": 5.672,
+        "low": 5.63,
+        "close": 5.664,
+        "ema10": 5.596539,
+        "sma20": 5.5915,
+        "sma50": 5.66668
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 5.64,
+        "high": 5.656,
+        "low": 5.596,
+        "close": 5.61,
+        "ema10": 5.581548,
+        "sma20": 5.5802,
+        "sma50": 5.6724
+      },
+      "indicators": {
+        "ema10": 5.596539,
+        "sma20": 5.5915,
+        "sma50": 5.66668
+      }
+    },
+    "STELLANTIS": {
+      "name": "Stellantis",
+      "isin": "NL00150001Q9",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 4.05,
+        "high": 4.126,
+        "low": 3.942,
+        "close": 3.9695,
+        "ema10": 4.018844,
+        "sma20": 4.088925,
+        "sma50": 4.42449
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 4.0375,
+        "high": 4.117,
+        "low": 4.003,
+        "close": 4.003,
+        "ema10": 4.029809,
+        "sma20": 4.11745,
+        "sma50": 4.44405
+      },
+      "indicators": {
+        "ema10": 4.018844,
+        "sma20": 4.088925,
+        "sma50": 4.42449
+      }
+    },
+    "STMICROELECTRONICS": {
+      "name": "STMicroelectronics",
+      "isin": "NL0000226223",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 47,
+        "high": 47.045,
+        "low": 45.305,
+        "close": 45.575,
+        "ema10": 47.645757,
+        "sma20": 46.39325,
+        "sma50": 45.5286
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 47.495,
+        "high": 48.28,
+        "low": 46.335,
+        "close": 46.555,
+        "ema10": 48.105925,
+        "sma20": 46.20275,
+        "sma50": 45.5229
+      },
+      "indicators": {
+        "ema10": 47.645757,
+        "sma20": 46.39325,
+        "sma50": 45.5286
+      }
+    },
+    "TELECOM_ITALIA": {
+      "name": "Telecom Italia",
+      "isin": "IT0005712671",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 5.59,
+        "high": 5.623,
+        "low": 5.422,
+        "close": 5.486,
+        "ema10": 6.091999,
+        "sma20": 6.83785,
+        "sma50": 7.31532
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 5.63,
+        "high": 5.734,
+        "low": 5.547,
+        "close": 5.553,
+        "ema10": 6.226666,
+        "sma20": 6.9432,
+        "sma50": 7.35458
+      },
+      "indicators": {
+        "ema10": 6.091999,
+        "sma20": 6.83785,
+        "sma50": 7.31532
+      }
+    },
+    "TENARIS": {
+      "name": "Tenaris",
+      "isin": "LU2598331598",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 25.83,
+        "high": 26.4,
+        "low": 25.76,
+        "close": 25.97,
+        "ema10": 25.256129,
+        "sma20": 24.8405,
+        "sma50": 24.1042
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 25.11,
+        "high": 25.81,
+        "low": 25.03,
+        "close": 25.71,
+        "ema10": 25.097491,
+        "sma20": 24.7255,
+        "sma50": 24.0808
+      },
+      "indicators": {
+        "ema10": 25.256129,
+        "sma20": 24.8405,
+        "sma50": 24.1042
+      }
+    },
+    "TERNA": {
+      "name": "Terna",
+      "isin": "IT0003242622",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 9.156,
+        "high": 9.2,
+        "low": 9.12,
+        "close": 9.174,
+        "ema10": 9.148646,
+        "sma20": 9.2027,
+        "sma50": 9.49344
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 9.232,
+        "high": 9.248,
+        "low": 9.086,
+        "close": 9.13,
+        "ema10": 9.143012,
+        "sma20": 9.1928,
+        "sma50": 9.51066
+      },
+      "indicators": {
+        "ema10": 9.148646,
+        "sma20": 9.2027,
+        "sma50": 9.49344
+      }
+    },
+    "UNICREDIT": {
+      "name": "UniCredit",
+      "isin": "IT0005239360",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 76.98,
+        "high": 77.21,
+        "low": 75.99,
+        "close": 76.25,
+        "ema10": 78.62778,
+        "sma20": 81.1305,
+        "sma50": 83.0342
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 76.14,
+        "high": 76.83,
+        "low": 75.77,
+        "close": 76.13,
+        "ema10": 79.156175,
+        "sma20": 81.5415,
+        "sma50": 83.1852
+      },
+      "indicators": {
+        "ema10": 78.62778,
+        "sma20": 81.1305,
+        "sma50": 83.0342
+      }
+    },
+    "UNIPOL": {
+      "name": "Unipol",
+      "isin": "IT0004810054",
+      "exchange": "XMIL",
+      "barsStored": 80,
+      "mode": "bootstrap",
+      "requestedMode": "auto",
+      "sourcePeriod": "6M",
+      "sourceBarsReceived": 130,
+      "barsMergedFromFetch": 80,
+      "latestCompleted": {
+        "timestamp": 1791763200000,
+        "date": "2026-10-12",
+        "open": 24.49,
+        "high": 25.2,
+        "low": 24.45,
+        "close": 24.92,
+        "ema10": 26.022838,
+        "sma20": 26.8655,
+        "sma50": 27.7574
+      },
+      "previousCompleted": {
+        "timestamp": 1791504000000,
+        "date": "2026-10-09",
+        "open": 25.49,
+        "high": 26,
+        "low": 25.16,
+        "close": 25.4,
+        "ema10": 26.267913,
+        "sma20": 27.0195,
+        "sma50": 27.8144
+      },
+      "indicators": {
+        "ema10": 26.022838,
+        "sma20": 26.8655,
+        "sma50": 27.7574
+      }
     }
   },
-  "errors": {}
+  "errors": {},
+  "expectedInstruments": 40,
+  "completedInstruments": 40,
+  "failedInstruments": 0
 }
