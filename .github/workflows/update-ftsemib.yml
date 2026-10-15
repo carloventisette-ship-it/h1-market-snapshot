@@ -37,14 +37,12 @@ jobs:
             exit 0
           fi
 
-          LOCAL_TIME=$(TZ=Europe/Rome date +%H:%M)
-          LOCAL_DOW=$(TZ=Europe/Rome date +%u)
-
-          if [ "$LOCAL_DOW" -ge 1 ] && [ "$LOCAL_DOW" -le 5 ] && [[ "$LOCAL_TIME" > "18:29" && "$LOCAL_TIME" < "19:15" ]]; then
-            echo "run=true" >> "$GITHUB_OUTPUT"
-          else
-            echo "run=false" >> "$GITHUB_OUTPUT"
-          fi
+          LOCAL_OFFSET=$(TZ=Europe/Rome date +%z)
+          case "${{ github.event.schedule }}:$LOCAL_OFFSET" in
+            '30 16 * * 1-5:+0200'|'30 17 * * 1-5:+0100')
+              echo 'run=true' >> "$GITHUB_OUTPUT" ;;
+            *) echo 'run=false' >> "$GITHUB_OUTPUT" ;;
+          esac
 
       - uses: actions/checkout@v4
         if: steps.gate.outputs.run == 'true'
