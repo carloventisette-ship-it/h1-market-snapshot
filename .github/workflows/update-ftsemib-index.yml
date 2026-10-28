@@ -1,0 +1,66 @@
+name: Update FTSE MIB cash index D1
+on:
+  workflow_dispatch:
+    inputs:
+      refresh_mode:
+        description: Index D1 refresh mode
+        required: false
+        default: auto
+        type: choice
+        options: [auto, incremental, full]
+  schedule:
+    - cron: '0 19 * * 1-5'
+    - cron: '0 20 * * 1-5'
+permissions:
+  contents: write
+concurrency:
+  group: ftsemib-index-d1
+  cancel-in-progress: false
+jobs:
+  index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check 21:00 Europe Rome schedule
+        id: gate
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = 'workflow_dispatch' ]; then
+            echo 'run=true' >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          OFFSET=$(TZ=Europe/Rome date +%z)
+          case "${{ github.event.schedule }}:$OFFSET" in
+            '0 19 * * 1-5:+0200'|'0 20 * * 1-5:+0100')
+              echo 'run=true' >> "$GITHUB_OUTPUT" ;;
+            *) echo 'run=false' >> "$GITHUB_OUTPUT" ;;
+          esac
+      - uses: actions/checkout@v4
+        if: steps.gate.outputs.run == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.gate.outputs.run == 'true'
+        with:
+          node-version: 24
+      - name: Test index parser
+        if: steps.gate.outputs.run == 'true'
+        run: node --test tests/ftsemib-index.test.js
+      - name: Update FTSE MIB daily index
+        if: steps.gate.outputs.run == 'true'
+        env:
+          FTSEMIB_INDEX_REFRESH_MODE: ${{ github.event_name == 'workflow_dispatch' && (inputs.refresh_mode || 'auto') || 'auto' }}
+        run: node scripts/update-ftsemib-index.js
+      - name: Commit index series
+        if: steps.gate.outputs.run == 'true'
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add ftsemib-index-history.json ftsemib-index-latest.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'Update FTSE MIB cash index D1'
+          for attempt in 1 2 3 4; do
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then exit 0; fi
+            sleep 3
+          done
+          exit 1
