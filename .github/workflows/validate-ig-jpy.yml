@@ -4,7 +4,7 @@ on:
     branches:
       - feature/h1-eurjpy-audjpy
     paths:
-      - 'scripts/validate-ig-jpy.js'
+      - 'scripts/test-ig.js'
       - '.github/workflows/validate-ig-jpy.yml'
   workflow_dispatch:
 permissions:
@@ -23,4 +23,4 @@ jobs:
           IG_API_KEY: ${{ secrets.IG_API_KEY }}
           IG_USERNAME: ${{ secrets.IG_USERNAME }}
           IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
-        run: node scripts/validate-ig-jpy.js
+        run: node scripts/test-ig.js
