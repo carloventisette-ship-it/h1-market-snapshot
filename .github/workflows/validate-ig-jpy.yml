@@ -1,0 +1,67 @@
+name: Validate IG JPY forex H1 access
+on:
+  push:
+    branches:
+      - feature/h1-eurjpy-audjpy
+    paths:
+      - 'scripts/test-ig.js'
+      - 'scripts/update-h1.js'
+      - '.github/workflows/validate-ig-jpy.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Check IG JPY EPICs and bootstrap data
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+        run: node scripts/test-ig.js
+      - name: Bootstrap new pairs in isolated checkout
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          H1_REFRESH_MODE: auto
+        run: node scripts/update-h1.js
+      - name: Validate 5 H1 instruments
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const h=JSON.parse(fs.readFileSync('h1-history.json','utf8'));
+          const s=JSON.parse(fs.readFileSync('h1-latest.json','utf8'));
+          const keys=['EURUSD','XAUUSD','WTI','EURJPY','AUDJPY'];
+          if(!s.ok||keys.some(k=>!s.instruments[k]||!h.instruments[k]))throw Error('Missing H1 instrument or errors '+JSON.stringify(s.errors));
+          for(const k of keys){
+            const bars=h.instruments[k].bars, o=s.instruments[k];
+            if(bars.length<50 || !['ema10','sma20','sma50'].every(a=>Number.isFinite(o.indicators[a])))throw Error('Bad indicators/history for '+k);
+            if((k==='EURJPY'||k==='AUDJPY')&&(bars.length<80||o.updateMode!=='bootstrap'))throw Error('New pair did not bootstrap '+k);
+            console.log(k, 'bars',bars.length,'mode',o.updateMode,'latest',o.latestCompleted.startUtc);
+          }
+          NODE
+      - name: Verify incremental update for new pairs
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+          H1_REFRESH_MODE: auto
+        run: |
+          node scripts/update-h1.js
+          node - <<'NODE'
+          const fs=require('fs');
+          const h=JSON.parse(fs.readFileSync('h1-history.json','utf8'));
+          const s=JSON.parse(fs.readFileSync('h1-latest.json','utf8'));
+          for(const k of ['EURJPY','AUDJPY']){
+            const a=h.instruments[k].bars, m=s.instruments[k];
+            if(m.updateMode!=='incremental'||m.barsRequested!==2||a.length<80||new Set(a.map(x=>x.timestamp)).size!==a.length)throw Error('Delta failed for '+k);
+            console.log('DELTA OK',k,m.barsRequested,a.length,m.latestCompleted.startUtc);
+          }
+          NODE

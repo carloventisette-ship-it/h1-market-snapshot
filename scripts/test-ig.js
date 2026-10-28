@@ -61,7 +61,7 @@ async function main() {
     lightstreamerEndpoint: login.data.lightstreamerEndpoint
   }, null, 2));
 
-  const queries = ['EUR/USD','Spot Gold','US Crude'];
+  const queries = ['EUR/JPY','AUD/JPY'];
   for (const q of queries) {
     const s = await ig('/markets?searchTerm=' + encodeURIComponent(q), { version:'1', tokenHeaders:auth });
     const markets = (s.data.markets || []).slice(0,8).map(m => ({
@@ -72,18 +72,22 @@ async function main() {
     console.log(JSON.stringify(markets, null, 2));
     if (!markets.length) continue;
 
-    const chosen = markets[0];
+    const chosen = markets.find(m => (m.instrumentName || '').replace(/[^a-z]/gi, '').toUpperCase() === q.replace(/[^a-z]/gi, '').toUpperCase() && (!m.expiry || m.expiry === '-')) || markets.find(m => (m.instrumentName || '').replace(/[^a-z]/gi, '').toUpperCase() === q.replace(/[^a-z]/gi, '').toUpperCase());
+    if (!chosen) throw new Error('No exact IG market match for ' + q);
     try {
-      const p = await ig('/prices/' + encodeURIComponent(chosen.epic) + '?resolution=HOUR&max=5&pageSize=5', {
+      const p = await ig('/prices/' + encodeURIComponent(chosen.epic) + '?resolution=HOUR&max=80&pageSize=80', {
         version:'3', tokenHeaders:auth
       });
       console.log('H1 TEST ' + chosen.instrumentName + ' [' + chosen.epic + ']');
-      console.log(JSON.stringify((p.data.prices || []).map(x => ({
+      console.log('H1 BAR COUNT ' + (p.data.prices || []).length);
+      console.log('H1 ALLOWANCE ' + JSON.stringify(p.data.metadata?.allowance || null));
+      console.log(JSON.stringify((p.data.prices || []).slice(-3).map(x => ({
         snapshotTime:x.snapshotTime,
         snapshotTimeUTC:x.snapshotTimeUTC,
         open:mid(x.openPrice), high:mid(x.highPrice), low:mid(x.lowPrice), close:mid(x.closePrice),
         lastTradedVolume:x.lastTradedVolume
       })), null, 2));
+      if ((p.data.prices || []).length < 80) throw Error('Insufficient history for ' + q);
     } catch (e) {
       console.log('H1 TEST ERROR ' + chosen.epic + ': ' + e.message);
     }
