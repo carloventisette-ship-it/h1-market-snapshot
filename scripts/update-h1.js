@@ -56,7 +56,7 @@ async function fetchBars(auth,cfg,max){
   if(!Array.isArray(x.data.prices)||!x.data.prices.length)throw new Error(`IG returned no H1 data for ${cfg.name}.`);
   return {bars:x.data.prices.map(p=>({timestamp:Date.parse(p.snapshotTimeUTC+"Z"),open:mid(p.openPrice)/cfg.scale,
     high:mid(p.highPrice)/cfg.scale,low:mid(p.lowPrice)/cfg.scale,close:mid(p.closePrice)/cfg.scale,volume:p.lastTradedVolume??null})),
-    allowance:x.data.allowance||null};
+    allowance:x.data.metadata?.allowance||x.data.allowance||null};
 }
 (async()=>{
   const now=Date.now(),auth=await login();
