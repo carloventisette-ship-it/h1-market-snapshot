@@ -38,7 +38,7 @@ function completedOnly(bars,now=romeNow()){
  return bars.filter(b=>b.date<today||(b.date===today&&ready));
 }
 async function fetchDaily(mode){
- const range=mode==='full'?'1y':'3mo';let err;
+ const range=mode==='full'?'1y':'1mo';let err;
  for(const host of ['query1.finance.yahoo.com','query2.finance.yahoo.com']){
   try{
    const url='https://'+host+'/v8/finance/chart/'+TICKER+'?range='+range+'&interval=1d&events=history';
@@ -60,7 +60,7 @@ async function main(){
  const mode=requestedMode==='full'||old.length<80?'full':'incremental';
  const downloaded=await fetchDaily(mode), valid=completedOnly(downloaded.bars);
  if(valid.length<(mode==='full'?80:2))throw Error('Not enough completed daily candles: '+valid.length);
- const bars=decorate(mergeBars(old,mode==='full'?valid.slice(-80):valid));
+ const bars=decorate(mergeBars(old,mode==='full'?valid.slice(-80):valid.slice(-2)));
  const last=bars.at(-1),before=bars.at(-2);
  const age=(Date.parse(romeDay(Date.now())+'T00:00:00Z')-last.timestamp)/86400000;
  if(age<0||age>7)throw Error('FTSE MIB index history stale/future: '+last.date);
