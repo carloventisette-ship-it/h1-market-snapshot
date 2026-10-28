@@ -1,0 +1,54 @@
+{
+  "ok": true,
+  "generatedAtUtc": "2026-10-28T09:51:42.551Z",
+  "generatedAtEuropeRome": "2026-10-28 10:51",
+  "timeframe": "1d",
+  "source": "Yahoo Finance chart v8 (FTSEMIB.MI, cash price index)",
+  "indicators": [
+    "EMA10",
+    "SMA20",
+    "SMA50"
+  ],
+  "expectedInstruments": 1,
+  "completedInstruments": 1,
+  "requestedMode": "full",
+  "mode": "full",
+  "instruments": {
+    "FTSEMIB": {
+      "name": "FTSE MIB",
+      "symbol": "FTSEMIB",
+      "vendorSymbol": "FTSEMIB.MI",
+      "kind": "cash_price_index",
+      "barsStored": 80,
+      "latestCompleted": {
+        "date": "2026-10-27",
+        "timestamp": 1793059200000,
+        "open": 48964,
+        "high": 49658,
+        "low": 48928,
+        "close": 49628,
+        "ema10": 49347.806952,
+        "sma20": 49792.4,
+        "sma50": 51212.12
+      },
+      "previousCompleted": {
+        "date": "2026-10-26",
+        "timestamp": 1792972800000,
+        "open": 48714,
+        "high": 49243,
+        "low": 48674,
+        "close": 49187,
+        "ema10": 49285.541831,
+        "sma20": 49901.25,
+        "sma50": 51279.92
+      },
+      "indicators": {
+        "ema10": 49347.806952,
+        "sma20": 49792.4,
+        "sma50": 51212.12
+      },
+      "source": "Yahoo Finance chart v8 (FTSEMIB.MI, cash price index)",
+      "sourceRange": "1y"
+    }
+  }
+}
