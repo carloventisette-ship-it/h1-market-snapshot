@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "generatedAtUtc": "2026-10-28T14:02:14.054Z",
-  "generatedAtEuropeRome": "2026-10-28 15:02:14",
+  "generatedAtUtc": "2026-10-28T15:02:16.928Z",
+  "generatedAtEuropeRome": "2026-10-28 16:02:16",
   "timeframe": "1h",
   "instruments": {
     "EURUSD": {
@@ -13,13 +13,28 @@
       "requestedMode": "incremental",
       "barsRequested": 2,
       "allowance": {
-        "remainingAllowance": 9014,
+        "remainingAllowance": 9004,
         "totalAllowance": 10000,
-        "allowanceExpiry": 414002
+        "allowanceExpiry": 410399
       },
-      "barsUsed": 374,
+      "barsUsed": 375,
       "currentOpenCandleExcluded": true,
       "latestCompleted": {
+        "timestamp": 1793196000000,
+        "open": 1.1134300000000001,
+        "high": 1.11365,
+        "low": 1.11245,
+        "close": 1.11353,
+        "volume": 2402,
+        "startUtc": "2026-10-28T14:00:00.000Z",
+        "endUtc": "2026-10-28T15:00:00.000Z",
+        "startEuropeRome": "2026-10-28 15:00:00",
+        "endEuropeRome": "2026-10-28 16:00:00",
+        "ema10": 1.11296073,
+        "sma20": 1.11265475,
+        "sma50": 1.1148663
+      },
+      "previousCompleted": {
         "timestamp": 1793192400000,
         "open": 1.11345,
         "high": 1.11391,
@@ -34,37 +49,7 @@
         "sma20": 1.11264925,
         "sma50": 1.1149771
       },
-      "previousCompleted": {
-        "timestamp": 1793188800000,
-        "open": 1.1130499999999999,
-        "high": 1.11371,
-        "low": 1.11294,
-        "close": 1.1134300000000001,
-        "volume": 19247,
-        "startUtc": "2026-10-28T12:00:00.000Z",
-        "endUtc": "2026-10-28T13:00:00.000Z",
-        "startEuropeRome": "2026-10-28 13:00:00",
-        "endEuropeRome": "2026-10-28 14:00:00",
-        "ema10": 1.11270628,
-        "sma20": 1.11264775,
-        "sma50": 1.1150975
-      },
       "recentCompleted": [
-        {
-          "timestamp": 1793167200000,
-          "open": 1.1118299999999999,
-          "high": 1.11228,
-          "low": 1.1114600000000001,
-          "close": 1.11152,
-          "volume": 7443,
-          "startUtc": "2026-10-28T06:00:00.000Z",
-          "endUtc": "2026-10-28T07:00:00.000Z",
-          "startEuropeRome": "2026-10-28 07:00:00",
-          "endEuropeRome": "2026-10-28 08:00:00",
-          "ema10": 1.11240096,
-          "sma20": 1.1132045,
-          "sma50": 1.1160683
-        },
         {
           "timestamp": 1793170800000,
           "open": 1.1114899999999999,
@@ -169,23 +154,38 @@
           "ema10": 1.11283423,
           "sma20": 1.11264925,
           "sma50": 1.1149771
+        },
+        {
+          "timestamp": 1793196000000,
+          "open": 1.1134300000000001,
+          "high": 1.11365,
+          "low": 1.11245,
+          "close": 1.11353,
+          "volume": 2402,
+          "startUtc": "2026-10-28T14:00:00.000Z",
+          "endUtc": "2026-10-28T15:00:00.000Z",
+          "startEuropeRome": "2026-10-28 15:00:00",
+          "endEuropeRome": "2026-10-28 16:00:00",
+          "ema10": 1.11296073,
+          "sma20": 1.11265475,
+          "sma50": 1.1148663
         }
       ],
       "indicators": {
-        "ema10": 1.11283423,
-        "sma20": 1.11264925,
-        "sma50": 1.1149771,
+        "ema10": 1.11296073,
+        "sma20": 1.11265475,
+        "sma50": 1.1148663,
         "previous": {
-          "ema10": 1.11270628,
-          "sma20": 1.11264775,
-          "sma50": 1.1150975
+          "ema10": 1.11283423,
+          "sma20": 1.11264925,
+          "sma50": 1.1149771
         }
       },
       "freshness": {
-        "latestCandleClosedAtUtc": "2026-10-28T14:00:00.000Z",
-        "latestCandleClosedAtEuropeRome": "2026-10-28 15:00:00",
-        "minutesSinceLatestCandleClose": 2.2,
-        "expectedLatestCandleStartUtc": "2026-10-28T13:00:00.000Z",
+        "latestCandleClosedAtUtc": "2026-10-28T15:00:00.000Z",
+        "latestCandleClosedAtEuropeRome": "2026-10-28 16:00:00",
+        "minutesSinceLatestCandleClose": 2.3,
+        "expectedLatestCandleStartUtc": "2026-10-28T14:00:00.000Z",
         "hasLatestExpectedClosedCandle": true
       }
     },
@@ -198,13 +198,28 @@
       "requestedMode": "incremental",
       "barsRequested": 2,
       "allowance": {
-        "remainingAllowance": 9012,
+        "remainingAllowance": 9002,
         "totalAllowance": 10000,
-        "allowanceExpiry": 414002
+        "allowanceExpiry": 410399
       },
-      "barsUsed": 361,
+      "barsUsed": 362,
       "currentOpenCandleExcluded": true,
       "latestCompleted": {
+        "timestamp": 1793196000000,
+        "open": 4050.25,
+        "high": 4050.88,
+        "low": 4036.63,
+        "close": 4042.06,
+        "volume": 23150,
+        "startUtc": "2026-10-28T14:00:00.000Z",
+        "endUtc": "2026-10-28T15:00:00.000Z",
+        "startEuropeRome": "2026-10-28 15:00:00",
+        "endEuropeRome": "2026-10-28 16:00:00",
+        "ema10": 4047.01984882,
+        "sma20": 4049.666,
+        "sma50": 4030.6614
+      },
+      "previousCompleted": {
         "timestamp": 1793192400000,
         "open": 4053.39,
         "high": 4058.17,
@@ -219,37 +234,7 @@
         "sma20": 4050.3975,
         "sma50": 4030.1226
       },
-      "previousCompleted": {
-        "timestamp": 1793188800000,
-        "open": 4045.91,
-        "high": 4059.87,
-        "low": 4044.6800000000003,
-        "close": 4053.41,
-        "volume": 17998,
-        "startUtc": "2026-10-28T12:00:00.000Z",
-        "endUtc": "2026-10-28T13:00:00.000Z",
-        "startEuropeRome": "2026-10-28 13:00:00",
-        "endEuropeRome": "2026-10-28 14:00:00",
-        "ema10": 4047.64693466,
-        "sma20": 4050.837,
-        "sma50": 4029.4786
-      },
       "recentCompleted": [
-        {
-          "timestamp": 1793167200000,
-          "open": 4029.94,
-          "high": 4035.015,
-          "low": 4027.94,
-          "close": 4031.21,
-          "volume": 12420,
-          "startUtc": "2026-10-28T06:00:00.000Z",
-          "endUtc": "2026-10-28T07:00:00.000Z",
-          "startEuropeRome": "2026-10-28 07:00:00",
-          "endEuropeRome": "2026-10-28 08:00:00",
-          "ema10": 4042.23000944,
-          "sma20": 4045.392,
-          "sma50": 4024.9314
-        },
         {
           "timestamp": 1793170800000,
           "open": 4031.06,
@@ -354,23 +339,38 @@
           "ema10": 4048.12203745,
           "sma20": 4050.3975,
           "sma50": 4030.1226
+        },
+        {
+          "timestamp": 1793196000000,
+          "open": 4050.25,
+          "high": 4050.88,
+          "low": 4036.63,
+          "close": 4042.06,
+          "volume": 23150,
+          "startUtc": "2026-10-28T14:00:00.000Z",
+          "endUtc": "2026-10-28T15:00:00.000Z",
+          "startEuropeRome": "2026-10-28 15:00:00",
+          "endEuropeRome": "2026-10-28 16:00:00",
+          "ema10": 4047.01984882,
+          "sma20": 4049.666,
+          "sma50": 4030.6614
         }
       ],
       "indicators": {
-        "ema10": 4048.12203745,
-        "sma20": 4050.3975,
-        "sma50": 4030.1226,
+        "ema10": 4047.01984882,
+        "sma20": 4049.666,
+        "sma50": 4030.6614,
         "previous": {
-          "ema10": 4047.64693466,
-          "sma20": 4050.837,
-          "sma50": 4029.4786
+          "ema10": 4048.12203745,
+          "sma20": 4050.3975,
+          "sma50": 4030.1226
         }
       },
       "freshness": {
-        "latestCandleClosedAtUtc": "2026-10-28T14:00:00.000Z",
-        "latestCandleClosedAtEuropeRome": "2026-10-28 15:00:00",
-        "minutesSinceLatestCandleClose": 2.2,
-        "expectedLatestCandleStartUtc": "2026-10-28T13:00:00.000Z",
+        "latestCandleClosedAtUtc": "2026-10-28T15:00:00.000Z",
+        "latestCandleClosedAtEuropeRome": "2026-10-28 16:00:00",
+        "minutesSinceLatestCandleClose": 2.3,
+        "expectedLatestCandleStartUtc": "2026-10-28T14:00:00.000Z",
         "hasLatestExpectedClosedCandle": true
       }
     },
@@ -383,13 +383,28 @@
       "requestedMode": "incremental",
       "barsRequested": 2,
       "allowance": {
-        "remainingAllowance": 9010,
+        "remainingAllowance": 9000,
         "totalAllowance": 10000,
-        "allowanceExpiry": 414002
+        "allowanceExpiry": 410398
       },
-      "barsUsed": 361,
+      "barsUsed": 362,
       "currentOpenCandleExcluded": true,
       "latestCompleted": {
+        "timestamp": 1793196000000,
+        "open": 101.35600000000001,
+        "high": 102.23899999999999,
+        "low": 101.19650000000001,
+        "close": 101.89,
+        "volume": 26969,
+        "startUtc": "2026-10-28T14:00:00.000Z",
+        "endUtc": "2026-10-28T15:00:00.000Z",
+        "startEuropeRome": "2026-10-28 15:00:00",
+        "endEuropeRome": "2026-10-28 16:00:00",
+        "ema10": 101.21188329,
+        "sma20": 100.6385,
+        "sma50": 100.7161
+      },
+      "previousCompleted": {
         "timestamp": 1793192400000,
         "open": 101.46600000000001,
         "high": 101.611,
@@ -404,37 +419,7 @@
         "sma20": 100.5158,
         "sma50": 100.68718
       },
-      "previousCompleted": {
-        "timestamp": 1793188800000,
-        "open": 101.39,
-        "high": 101.62650000000002,
-        "low": 101.006,
-        "close": 101.462,
-        "volume": 9437,
-        "startUtc": "2026-10-28T12:00:00.000Z",
-        "endUtc": "2026-10-28T13:00:00.000Z",
-        "startEuropeRome": "2026-10-28 13:00:00",
-        "endEuropeRome": "2026-10-28 14:00:00",
-        "ema10": 100.99789973,
-        "sma20": 100.4274,
-        "sma50": 100.6771
-      },
       "recentCompleted": [
-        {
-          "timestamp": 1793167200000,
-          "open": 100.834,
-          "high": 101.2275,
-          "low": 100.792,
-          "close": 101.162,
-          "volume": 3573,
-          "startUtc": "2026-10-28T06:00:00.000Z",
-          "endUtc": "2026-10-28T07:00:00.000Z",
-          "startEuropeRome": "2026-10-28 07:00:00",
-          "endEuropeRome": "2026-10-28 08:00:00",
-          "ema10": 100.56864287,
-          "sma20": 100.19005,
-          "sma50": 100.62106
-        },
         {
           "timestamp": 1793170800000,
           "open": 101.186,
@@ -539,23 +524,38 @@
           "ema10": 101.06119069,
           "sma20": 100.5158,
           "sma50": 100.68718
+        },
+        {
+          "timestamp": 1793196000000,
+          "open": 101.35600000000001,
+          "high": 102.23899999999999,
+          "low": 101.19650000000001,
+          "close": 101.89,
+          "volume": 26969,
+          "startUtc": "2026-10-28T14:00:00.000Z",
+          "endUtc": "2026-10-28T15:00:00.000Z",
+          "startEuropeRome": "2026-10-28 15:00:00",
+          "endEuropeRome": "2026-10-28 16:00:00",
+          "ema10": 101.21188329,
+          "sma20": 100.6385,
+          "sma50": 100.7161
         }
       ],
       "indicators": {
-        "ema10": 101.06119069,
-        "sma20": 100.5158,
-        "sma50": 100.68718,
+        "ema10": 101.21188329,
+        "sma20": 100.6385,
+        "sma50": 100.7161,
         "previous": {
-          "ema10": 100.99789973,
-          "sma20": 100.4274,
-          "sma50": 100.6771
+          "ema10": 101.06119069,
+          "sma20": 100.5158,
+          "sma50": 100.68718
         }
       },
       "freshness": {
-        "latestCandleClosedAtUtc": "2026-10-28T14:00:00.000Z",
-        "latestCandleClosedAtEuropeRome": "2026-10-28 15:00:00",
-        "minutesSinceLatestCandleClose": 2.2,
-        "expectedLatestCandleStartUtc": "2026-10-28T13:00:00.000Z",
+        "latestCandleClosedAtUtc": "2026-10-28T15:00:00.000Z",
+        "latestCandleClosedAtEuropeRome": "2026-10-28 16:00:00",
+        "minutesSinceLatestCandleClose": 2.3,
+        "expectedLatestCandleStartUtc": "2026-10-28T14:00:00.000Z",
         "hasLatestExpectedClosedCandle": true
       }
     },
@@ -568,13 +568,28 @@
       "requestedMode": "incremental",
       "barsRequested": 2,
       "allowance": {
-        "remainingAllowance": 9008,
+        "remainingAllowance": 8998,
         "totalAllowance": 10000,
-        "allowanceExpiry": 414001
+        "allowanceExpiry": 410398
       },
-      "barsUsed": 82,
+      "barsUsed": 83,
       "currentOpenCandleExcluded": true,
       "latestCompleted": {
+        "timestamp": 1793196000000,
+        "open": 176.03050000000002,
+        "high": 176.1485,
+        "low": 175.9965,
+        "close": 176.1325,
+        "volume": 4670,
+        "startUtc": "2026-10-28T14:00:00.000Z",
+        "endUtc": "2026-10-28T15:00:00.000Z",
+        "startEuropeRome": "2026-10-28 15:00:00",
+        "endEuropeRome": "2026-10-28 16:00:00",
+        "ema10": 175.80801401,
+        "sma20": 175.695825,
+        "sma50": 175.88412
+      },
+      "previousCompleted": {
         "timestamp": 1793192400000,
         "open": 175.88049999999998,
         "high": 176.1175,
@@ -589,37 +604,7 @@
         "sma20": 175.681975,
         "sma50": 175.8822
       },
-      "previousCompleted": {
-        "timestamp": 1793188800000,
-        "open": 175.7455,
-        "high": 175.9245,
-        "low": 175.7335,
-        "close": 175.8745,
-        "volume": 24991,
-        "startUtc": "2026-10-28T12:00:00.000Z",
-        "endUtc": "2026-10-28T13:00:00.000Z",
-        "startEuropeRome": "2026-10-28 13:00:00",
-        "endEuropeRome": "2026-10-28 14:00:00",
-        "ema10": 175.67155179,
-        "sma20": 175.672325,
-        "sma50": 175.88636
-      },
       "recentCompleted": [
-        {
-          "timestamp": 1793167200000,
-          "open": 175.4645,
-          "high": 175.6415,
-          "low": 175.462,
-          "close": 175.53050000000002,
-          "volume": 9876,
-          "startUtc": "2026-10-28T06:00:00.000Z",
-          "endUtc": "2026-10-28T07:00:00.000Z",
-          "startEuropeRome": "2026-10-28 07:00:00",
-          "endEuropeRome": "2026-10-28 08:00:00",
-          "ema10": 175.63456459,
-          "sma20": 175.7511,
-          "sma50": 175.95264
-        },
         {
           "timestamp": 1793170800000,
           "open": 175.5355,
@@ -724,23 +709,38 @@
           "ema10": 175.73590601,
           "sma20": 175.681975,
           "sma50": 175.8822
+        },
+        {
+          "timestamp": 1793196000000,
+          "open": 176.03050000000002,
+          "high": 176.1485,
+          "low": 175.9965,
+          "close": 176.1325,
+          "volume": 4670,
+          "startUtc": "2026-10-28T14:00:00.000Z",
+          "endUtc": "2026-10-28T15:00:00.000Z",
+          "startEuropeRome": "2026-10-28 15:00:00",
+          "endEuropeRome": "2026-10-28 16:00:00",
+          "ema10": 175.80801401,
+          "sma20": 175.695825,
+          "sma50": 175.88412
         }
       ],
       "indicators": {
-        "ema10": 175.73590601,
-        "sma20": 175.681975,
-        "sma50": 175.8822,
+        "ema10": 175.80801401,
+        "sma20": 175.695825,
+        "sma50": 175.88412,
         "previous": {
-          "ema10": 175.67155179,
-          "sma20": 175.672325,
-          "sma50": 175.88636
+          "ema10": 175.73590601,
+          "sma20": 175.681975,
+          "sma50": 175.8822
         }
       },
       "freshness": {
-        "latestCandleClosedAtUtc": "2026-10-28T14:00:00.000Z",
-        "latestCandleClosedAtEuropeRome": "2026-10-28 15:00:00",
-        "minutesSinceLatestCandleClose": 2.2,
-        "expectedLatestCandleStartUtc": "2026-10-28T13:00:00.000Z",
+        "latestCandleClosedAtUtc": "2026-10-28T15:00:00.000Z",
+        "latestCandleClosedAtEuropeRome": "2026-10-28 16:00:00",
+        "minutesSinceLatestCandleClose": 2.3,
+        "expectedLatestCandleStartUtc": "2026-10-28T14:00:00.000Z",
         "hasLatestExpectedClosedCandle": true
       }
     },
@@ -753,13 +753,28 @@
       "requestedMode": "incremental",
       "barsRequested": 2,
       "allowance": {
-        "remainingAllowance": 9006,
+        "remainingAllowance": 8996,
         "totalAllowance": 10000,
-        "allowanceExpiry": 414001
+        "allowanceExpiry": 410398
       },
-      "barsUsed": 82,
+      "barsUsed": 83,
       "currentOpenCandleExcluded": true,
       "latestCompleted": {
+        "timestamp": 1793196000000,
+        "open": 111.229,
+        "high": 111.3755,
+        "low": 111.21549999999999,
+        "close": 111.261,
+        "volume": 4971,
+        "startUtc": "2026-10-28T14:00:00.000Z",
+        "endUtc": "2026-10-28T15:00:00.000Z",
+        "startEuropeRome": "2026-10-28 15:00:00",
+        "endEuropeRome": "2026-10-28 16:00:00",
+        "ema10": 111.09971348,
+        "sma20": 111.0559,
+        "sma50": 110.86643
+      },
+      "previousCompleted": {
         "timestamp": 1793192400000,
         "open": 111.083,
         "high": 111.2475,
@@ -774,37 +789,7 @@
         "sma20": 111.04245,
         "sma50": 110.85191
       },
-      "previousCompleted": {
-        "timestamp": 1793188800000,
-        "open": 111.08099999999999,
-        "high": 111.13,
-        "low": 111.066,
-        "close": 111.084,
-        "volume": 3665,
-        "startUtc": "2026-10-28T12:00:00.000Z",
-        "endUtc": "2026-10-28T13:00:00.000Z",
-        "startEuropeRome": "2026-10-28 13:00:00",
-        "endEuropeRome": "2026-10-28 14:00:00",
-        "ema10": 111.02695471,
-        "sma20": 111.0308,
-        "sma50": 110.84009
-      },
       "recentCompleted": [
-        {
-          "timestamp": 1793167200000,
-          "open": 110.965,
-          "high": 111.112,
-          "low": 110.965,
-          "close": 111.027,
-          "volume": 3130,
-          "startUtc": "2026-10-28T06:00:00.000Z",
-          "endUtc": "2026-10-28T07:00:00.000Z",
-          "startEuropeRome": "2026-10-28 07:00:00",
-          "endEuropeRome": "2026-10-28 08:00:00",
-          "ema10": 111.04109461,
-          "sma20": 111.026975,
-          "sma50": 110.78009
-        },
         {
           "timestamp": 1793170800000,
           "open": 111.03200000000001,
@@ -909,23 +894,38 @@
           "ema10": 111.06387203,
           "sma20": 111.04245,
           "sma50": 110.85191
+        },
+        {
+          "timestamp": 1793196000000,
+          "open": 111.229,
+          "high": 111.3755,
+          "low": 111.21549999999999,
+          "close": 111.261,
+          "volume": 4971,
+          "startUtc": "2026-10-28T14:00:00.000Z",
+          "endUtc": "2026-10-28T15:00:00.000Z",
+          "startEuropeRome": "2026-10-28 15:00:00",
+          "endEuropeRome": "2026-10-28 16:00:00",
+          "ema10": 111.09971348,
+          "sma20": 111.0559,
+          "sma50": 110.86643
         }
       ],
       "indicators": {
-        "ema10": 111.06387203,
-        "sma20": 111.04245,
-        "sma50": 110.85191,
+        "ema10": 111.09971348,
+        "sma20": 111.0559,
+        "sma50": 110.86643,
         "previous": {
-          "ema10": 111.02695471,
-          "sma20": 111.0308,
-          "sma50": 110.84009
+          "ema10": 111.06387203,
+          "sma20": 111.04245,
+          "sma50": 110.85191
         }
       },
       "freshness": {
-        "latestCandleClosedAtUtc": "2026-10-28T14:00:00.000Z",
-        "latestCandleClosedAtEuropeRome": "2026-10-28 15:00:00",
-        "minutesSinceLatestCandleClose": 2.2,
-        "expectedLatestCandleStartUtc": "2026-10-28T13:00:00.000Z",
+        "latestCandleClosedAtUtc": "2026-10-28T15:00:00.000Z",
+        "latestCandleClosedAtEuropeRome": "2026-10-28 16:00:00",
+        "minutesSinceLatestCandleClose": 2.3,
+        "expectedLatestCandleStartUtc": "2026-10-28T14:00:00.000Z",
         "hasLatestExpectedClosedCandle": true
       }
     }
