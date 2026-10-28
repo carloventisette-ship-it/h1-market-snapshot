@@ -1,7 +1,7 @@
 {
   "ok": true,
-  "generatedAtUtc": "2026-10-28T09:51:42.551Z",
-  "generatedAtEuropeRome": "2026-10-28 10:51",
+  "generatedAtUtc": "2026-10-28T23:43:06.976Z",
+  "generatedAtEuropeRome": "2026-10-29 00:43",
   "timeframe": "1d",
   "source": "Yahoo Finance chart v8 (FTSEMIB.MI, cash price index)",
   "indicators": [
@@ -11,8 +11,8 @@
   ],
   "expectedInstruments": 1,
   "completedInstruments": 1,
-  "requestedMode": "full",
-  "mode": "full",
+  "requestedMode": "auto",
+  "mode": "incremental",
   "instruments": {
     "FTSEMIB": {
       "name": "FTSE MIB",
@@ -48,7 +48,7 @@
         "sma50": 51212.12
       },
       "source": "Yahoo Finance chart v8 (FTSEMIB.MI, cash price index)",
-      "sourceRange": "1y"
+      "sourceRange": "1mo"
     }
   }
 }
