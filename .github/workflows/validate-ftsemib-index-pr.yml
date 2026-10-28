@@ -24,6 +24,18 @@ jobs:
         env:
           FTSEMIB_INDEX_REFRESH_MODE: full
         run: node scripts/update-ftsemib-index.js
+      - name: Validate first incremental update retains 80 candles
+        env:
+          FTSEMIB_INDEX_REFRESH_MODE: incremental
+        run: |
+          node scripts/update-ftsemib-index.js
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=JSON.parse(fs.readFileSync('ftsemib-index-latest.json'));
+          const bars=JSON.parse(fs.readFileSync('ftsemib-index-history.json')).instruments.FTSEMIB.bars;
+          if(s.mode!=='incremental'||bars.length!==80||new Set(bars.map(x=>x.date)).size!==80)process.exit(1);
+          console.log('Incremental validated:',bars.length,'candles; latest',bars.at(-1).date);
+          NODE
       - name: Check stored series and latest snapshot
         run: |
           node - <<'NODE'
