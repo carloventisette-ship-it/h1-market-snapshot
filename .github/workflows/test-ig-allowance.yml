@@ -2,6 +2,10 @@ name: Test IG Historical Allowance
 
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/test-ig-allowance.yml'
   schedule:
     # 07:30 Europe/Rome: 05:30 UTC in summer, 06:30 UTC in winter.
     - cron: "30 5 * * *"
@@ -16,9 +20,9 @@ jobs:
         id: rome
         shell: bash
         run: |
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "${{ github.event_name }}" = "push" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
-          elif [ "$(TZ=Europe/Rome date +%H%M)" = "0730" ]; then
+          elif [ "${{ github.event.schedule }}:$(TZ=Europe/Rome date +%z)" = "30 5 * * *:+0200" ] || [ "${{ github.event.schedule }}:$(TZ=Europe/Rome date +%z)" = "30 6 * * *:+0100" ]; then
             echo "run=true" >> "$GITHUB_OUTPUT"
           else
             echo "run=false" >> "$GITHUB_OUTPUT"
@@ -83,7 +87,8 @@ jobs:
               pricesReturned: Array.isArray(result.data.prices)
                 ? result.data.prices.length
                 : 0,
-              allowance: result.data.allowance || null
+              allowance: result.data.metadata?.allowance || result.data.allowance || null,
+              metadataKeys: Object.keys(result.data.metadata || {})
             }, null, 2));
 
             if (!result.r.ok) {
