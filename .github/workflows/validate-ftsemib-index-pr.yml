@@ -1,0 +1,51 @@
+name: Validate FTSE MIB cash index D1 pull request
+on:
+  pull_request:
+    paths:
+      - 'scripts/update-ftsemib-index.js'
+      - 'tests/ftsemib-index.test.js'
+      - '.github/workflows/update-ftsemib-index.yml'
+      - '.github/workflows/validate-ftsemib-index-pr.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Test index parser and indicators
+        run: node --test tests/ftsemib-index.test.js
+      - name: Download and validate 80 completed D1 index candles
+        env:
+          FTSEMIB_INDEX_REFRESH_MODE: full
+        run: node scripts/update-ftsemib-index.js
+      - name: Validate first incremental update retains 80 candles
+        env:
+          FTSEMIB_INDEX_REFRESH_MODE: incremental
+        run: |
+          node scripts/update-ftsemib-index.js
+          node - <<'NODE'
+          const fs=require('fs');
+          const s=JSON.parse(fs.readFileSync('ftsemib-index-latest.json'));
+          const bars=JSON.parse(fs.readFileSync('ftsemib-index-history.json')).instruments.FTSEMIB.bars;
+          if(s.mode!=='incremental'||bars.length!==80||new Set(bars.map(x=>x.date)).size!==80)process.exit(1);
+          console.log('Incremental validated:',bars.length,'candles; latest',bars.at(-1).date);
+          NODE
+      - name: Check stored series and latest snapshot
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          const h=JSON.parse(fs.readFileSync('ftsemib-index-history.json','utf8'));
+          const s=JSON.parse(fs.readFileSync('ftsemib-index-latest.json','utf8'));
+          const bars=h.instruments?.FTSEMIB?.bars||[];
+          if(bars.length<80 || !s.ok || !s.instruments?.FTSEMIB?.latestCompleted) process.exit(1);
+          if(bars.some((b,i)=>!b.date||b.low<=0||b.high<b.low||b.open<b.low-.05||b.open>b.high+.05||b.close<b.low-.05||b.close>b.high+.05||i>0&&b.date<=bars[i-1].date)) process.exit(1);
+          const last=bars.at(-1);
+          if(!['ema10','sma20','sma50'].every(k=>Number.isFinite(last[k]))) process.exit(1);
+          console.log('Validated',bars.length,'candles',bars[0].date,'to',last.date,'lastClose',last.close);
+          NODE
