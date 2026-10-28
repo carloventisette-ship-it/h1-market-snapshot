@@ -1,0 +1,26 @@
+name: Validate IG JPY forex H1 access
+on:
+  push:
+    branches:
+      - feature/h1-eurjpy-audjpy
+    paths:
+      - 'scripts/validate-ig-jpy.js'
+      - '.github/workflows/validate-ig-jpy.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Check IG JPY EPICs and bootstrap data
+        env:
+          IG_API_KEY: ${{ secrets.IG_API_KEY }}
+          IG_USERNAME: ${{ secrets.IG_USERNAME }}
+          IG_PASSWORD: ${{ secrets.IG_PASSWORD }}
+        run: node scripts/validate-ig-jpy.js
