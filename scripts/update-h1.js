@@ -5,7 +5,9 @@ const HISTORY_FILE="h1-history.json", RECENT_BARS=8, BOOTSTRAP_BARS=80, INCREMEN
 const MARKETS={
   EURUSD:{epic:"CS.D.EURUSD.CEB.IP",name:"EUR/USD",scale:1},
   XAUUSD:{epic:"CS.D.CFEGOLD.CEB.IP",name:"Spot Gold ($1)",scale:1},
-  WTI:{epic:"CC.D.CL.UEB.IP",name:"Oil - US Crude (1$)",scale:100}
+  WTI:{epic:"CC.D.CL.UEB.IP",name:"Oil - US Crude (1$)",scale:100},
+  EURJPY:{epic:"CS.D.EURJPY.CFD.IP",name:"EUR/JPY",scale:1},
+  AUDJPY:{epic:"CS.D.AUDJPY.CFD.IP",name:"AUD/JPY",scale:1}
 };
 
 function floorHour(t=Date.now()){return Math.floor(t/HOUR_MS)*HOUR_MS;}
