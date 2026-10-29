@@ -56,6 +56,8 @@ async function fetchDaily(mode){
    if(!res.ok)throw Error('HTTP '+res.status+' '+host);
    const bars=parseYahooChart(await res.json());
    if(bars.length<(mode==='full'?80:2))throw Error('Insufficient candles: '+bars.length);
+   const completed=completedOnly(bars), expected=expectedSessionDate();
+   if(completed.at(-1)?.date!==expected)throw Error('Stale '+host+': expected '+expected+', latest '+(completed.at(-1)?.date||'none'));
    return {bars,range,host};
   }catch(e){err=e;}
  }
