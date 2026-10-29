@@ -5,6 +5,16 @@ const KEY='FTSEMIB', TICKER='FTSEMIB.MI', ZONE='Europe/Rome';
 const SOURCE='Yahoo Finance chart v8 (FTSEMIB.MI, cash price index)';
 function romeDay(ms){return new Intl.DateTimeFormat('sv-SE',{timeZone:ZONE,year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(ms));}
 function romeNow(){return new Intl.DateTimeFormat('sv-SE',{timeZone:ZONE,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',hour12:false}).format(new Date());}
+// Require the latest completed weekday session; weekends roll back to Friday.
+// Exchange holidays intentionally fail closed rather than marking stale data fresh.
+function expectedSessionDate(now=romeNow()){
+ const day=now.slice(0,10),hour=now.slice(11,16);
+ const d=new Date(day+'T00:00:00Z');
+ const weekday=d.getUTCDay();
+ if(weekday>=1&&weekday<=5&&hour>='18:30')return day;
+ do{d.setUTCDate(d.getUTCDate()-1);}while(d.getUTCDay()===0||d.getUTCDay()===6);
+ return d.toISOString().slice(0,10);
+}
 function round(v){return Number.isFinite(v)?Number(v.toFixed(6)):null;}
 function sma(v,p){let s=0;return v.map((x,i)=>{s+=x;if(i>=p)s-=v[i-p];return i>=p-1?s/p:null;});}
 function ema(v,p){let a=Array(v.length).fill(null);if(v.length<p)return a;let x=v.slice(0,p).reduce((s,n)=>s+n,0)/p;a[p-1]=x;for(let i=p;i<v.length;i++){x=(v[i]-x)*(2/(p+1))+x;a[i]=x;}return a;}
@@ -62,8 +72,9 @@ async function main(){
  if(valid.length<(mode==='full'?80:2))throw Error('Not enough completed daily candles: '+valid.length);
  const bars=decorate(mergeBars(old,mode==='full'?valid.slice(-80):valid.slice(-2)));
  const last=bars.at(-1),before=bars.at(-2);
- const age=(Date.parse(romeDay(Date.now())+'T00:00:00Z')-last.timestamp)/86400000;
- if(age<0||age>7)throw Error('FTSE MIB index history stale/future: '+last.date);
+ const expected=expectedSessionDate();
+ if(last.date!==expected)throw Error('FTSE MIB index D1 NOT CURRENT: expected completed session '+expected+', Yahoo returned latest '+last.date+'. No JSON files written; retry at 05:00 Europe/Rome.');
+ if([last.ema10,last.sma20,last.sma50].some(v=>!Number.isFinite(v)))throw Error('FTSE MIB indicators missing for '+last.date);
  const generatedAtUtc=new Date().toISOString();
  const instrument={name:'FTSE MIB',symbol:KEY,vendorSymbol:TICKER,kind:'cash_price_index',currency:'EUR',source:SOURCE,bars};
  save(HISTORY,{generatedAtUtc,timeframe:'1d',source:SOURCE,instruments:{[KEY]:instrument}});
@@ -75,4 +86,4 @@ async function main(){
  console.log(JSON.stringify({ok:true,mode,barsStored:bars.length,latestDate:last.date,latestClose:last.close,sourceHost:downloaded.host}));
 }
 if(require.main===module)main().catch(e=>{console.error(e.stack||String(e));process.exitCode=1;});
-module.exports={parseYahooChart,completedOnly,mergeBars,decorate};
+module.exports={parseYahooChart,completedOnly,mergeBars,decorate,expectedSessionDate};
