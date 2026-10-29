@@ -11,8 +11,8 @@ on:
   schedule:
     - cron: '0 19 * * 1-5'
     - cron: '0 20 * * 1-5'
-    - cron: '0 3 * * 2-6'
-    - cron: '0 4 * * 2-6'
+    - cron: '0 0 * * 2-6'
+    - cron: '0 1 * * 2-6'
 permissions:
   contents: write
 concurrency:
@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check 21:00 and 05:00 Europe Rome schedules
+      - name: Check 21:00 and 02:00 Europe Rome schedules
         id: gate
         shell: bash
         run: |
@@ -34,7 +34,7 @@ jobs:
           OFFSET=$(TZ=Europe/Rome date +%z)
           case "${{ github.event.schedule }}:$OFFSET" in
             '0 19 * * 1-5:+0200'|'0 20 * * 1-5:+0100'|\
-            '0 3 * * 2-6:+0200'|'0 4 * * 2-6:+0100')
+            '0 0 * * 2-6:+0200'|'0 1 * * 2-6:+0100')
               echo 'run=true' >> "$GITHUB_OUTPUT" ;;
             *) echo 'run=false' >> "$GITHUB_OUTPUT" ;;
           esac
